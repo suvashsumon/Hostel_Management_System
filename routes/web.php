@@ -23,19 +23,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/expired', [AuthorityController::class, 'expired_user'])->name('expired');
 
 // admin routes
-Route::group(['prefix'=>'admin', 'middleware'=>[]], function(){
+Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
 // mess authority routes
-Route::group(['prefix'=>'mess_auth', 'middleware'=>[]], function(){
+Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isActive']], function(){
     Route::get('/dashboard', [AuthorityController::class, 'index'])->name('authority.dashboard');
 });
 
 
 // boarder routes
-Route::group(['prefix'=>'boarder', 'middleware'=>[]], function(){
+Route::group(['prefix'=>'boarder', 'middleware'=>['auth', 'isBoarder']], function(){
     Route::get('/dashboard', [BoarderController::class, 'index'])->name('boarder.dashboard');
 });
