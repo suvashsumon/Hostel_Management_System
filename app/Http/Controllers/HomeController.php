@@ -24,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        if($user && $user->status != 'inactive')
+        {
+            if($user->role == 'admin') return redirect()->route('admin.dashboard');
+            if($user->role == 'mess_owner' || $user->role == 'mess_manager') return redirect()->route('authority.dashboard');
+            if($user->role == 'mess_boarder') return redirect()->route('boarder.dashboard');
+        }
         return view('home');
     }
 }
