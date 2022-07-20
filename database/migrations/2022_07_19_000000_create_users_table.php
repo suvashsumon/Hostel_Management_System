@@ -20,7 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('email', 255)->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'mess_authority', 'normal_user'])->default('normal_user');
+            $table->foreignId('mess_id')->nullable()->constrained();
+            $table->enum('role', ['admin', 'mess_owner', 'mess_manager', 'mess_boarder', 'new_user'])->default('new_user');
+            $table->date('last_subscribed')->nullable();
+            $table->date('active_till')->nullable();
+            $table->enum('status', ['active', 'inactive', 'expired'])->default('inactive');
             $table->rememberToken();
             $table->timestamps();
         });

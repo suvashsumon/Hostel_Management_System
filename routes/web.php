@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthorityController;
+use App\Http\Controllers\BoarderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// admin routes
+Route::group(['prefix'=>'admin', 'middleware'=>[]], function(){
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+// mess authority routes
+Route::group(['prefix'=>'mess_auth', 'middleware'=>[]], function(){
+    Route::get('/dashboard', [AuthorityController::class, 'index'])->name('authority.dashboard');
+});
+
+
+// boarder routes
+Route::group(['prefix'=>'boarder', 'middleware'=>[]], function(){
+    Route::get('/dashboard', [BoarderController::class, 'index'])->name('boarder.dashboard');
+});

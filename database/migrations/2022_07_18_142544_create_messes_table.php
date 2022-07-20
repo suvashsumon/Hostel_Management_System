@@ -17,8 +17,6 @@ class CreateMessesTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('description')->nullable(true);
-            $table->enum('status', ['active', 'inactive', 'expired']);
-            $table->date('active_untill')->nullable();
             $table->timestamps();
         });
     }

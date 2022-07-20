@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Mess::create([
+            'name' => 'Sopno Satrabas',
+            'description' => 'Binodpur, Rajshahi'
+        ]);
+        
         \App\Models\User::create([
             'name' => 'Super Admin',
             'phone_no' => '01717601509',
