@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorityController;
 use App\Http\Controllers\BoarderController;
+use App\Http\Controllers\CustomarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::get('/expired', [AuthorityController::class, 'expired_user'])->name('expi
 // admin routes
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/customar-list', [CustomarController::class, 'customar_list'])->name('customar.list');
+    Route::get('/expired-inactive-customar-list', [CustomarController::class, 'expired_inactive_customars'])->name('inactive.expired.customar.list');
 });
 
 // mess authority routes

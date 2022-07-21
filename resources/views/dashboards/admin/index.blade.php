@@ -1,5 +1,7 @@
-admin dashboard
-<form action="/logout" method="post">
-                                    @csrf
-                                    <button name="submit">Log Out</button>
-                                </form>
+@extends('dashboards.admin.layout.admin_layout')
+
+@section('title', 'Admin Dashboard')
+
+@section('contents')
+<h1>Admin Dashboard</h1>
+@endsection
