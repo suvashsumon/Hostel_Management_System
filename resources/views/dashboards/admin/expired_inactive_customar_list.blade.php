@@ -9,7 +9,7 @@
 
 
 @section('contents')
-<h4><i class="fa fa-users"></i> Customar List</h4>
+<h4><i class="fa fa-users"></i> Expired/Inactive Customar List</h4>
 <hr>
 <table class="table table-sm" id="customarlist" width="100%">
     <thead>
@@ -26,10 +26,10 @@
         @foreach ($customars as $customar)
         <tr>
             <th scope="row">1</th>
-            <th><a class="btn btn-outline-danger btn-sm" href="#"><i class="fa fa-trash"></i></a> <a href="#"
-                    class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i
+            <th><a class="btn btn-outline-danger btn-sm" href="#"><i class="fa fa-trash"></i></a> <a
+                    class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#updateExpiryDate{{ $customar->id }}"><i
                         class="fa fa-rotate-right"></i></a> <a href="#" class="btn btn-outline-success btn-sm"><i
-                        class="fa fa-check"></i></a></th>
+                        class="fa fa-unlock"></i></a></th>
             <td>{{ $customar->name }}</td>
             <td>{{ $customar->phone_no }}</td>
             <td>{{ $customar->email }}</td>
@@ -39,24 +39,26 @@
     </tbody>
 </table>
 
-
+@foreach ($customars as $customar)
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div class="modal fade" id="updateExpiryDate{{ $customar->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Update Customar Status</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Customar Status <span class="badge badge-dark text-light">{{ $customar->name }}</span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{ route('admin.set_expiry_date') }}" method="post">
+                    @csrf
+                    <input name="customar_id" type="hidden" value="{{ $customar->id }}">
                     <div class="form-group">
                         <label for="exampleInputEmail1">New Expiry Date</label>
                         <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email">
+                            placeholder="Enter email" name="expiry_date">
                         <small id="emailHelp" class="form-text text-muted"></small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -65,6 +67,7 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection
 
 @section('extra_js')
