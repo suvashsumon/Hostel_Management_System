@@ -1,6 +1,8 @@
 @extends('dashboards.admin.layout.admin_layout')
 
-@section('title', 'Customar List')
+@section('title', 'Active Customar List')
+@section('Customars', 'active')
+@section('active_customar_list', 'active')
 
 @section('extra_css')
 <link media="all" type="text/css" rel="stylesheet"
