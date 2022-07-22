@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Mess;
 
 class CustomarController extends Controller
 {
@@ -28,7 +29,7 @@ class CustomarController extends Controller
         $user->active_till = $expiry_date;
         $user->last_subscribed = strftime('%F');
         $user->update();
-        return redirect()->route('inactive.expired.customar.list');
+        return redirect()->back()->with('flash', 'Data updated succesfully');
     }
 
     public function new_registered_users()
@@ -43,5 +44,21 @@ class CustomarController extends Controller
         //return $user;
         $user->delete();
         return redirect()->back()->with('flash','User is deleted.');
+    }
+
+    public function give_owner_access(Request $req)
+    {
+        $customar_id = $req->customar_id;
+        $expiry_date = $req->expiry_date;
+        $mess = Mess::create([
+            'name'=>'Your Mess'
+        ]);
+        $customar = User::find($customar_id);
+        $customar->role = 'mess_owner';
+        $customar->status = 'active';
+        $customar->mess_id = $mess->id;
+        $customar->active_till = $expiry_date;
+        $customar->update();
+        return redirect()->back()->with('flash', 'Data updated successfully');
     }
 }

@@ -11,7 +11,7 @@
 
 
 @section('contents')
-<h4><i class="fa fa-users"></i> Customar List</h4>
+<h4><i class="fa fa-users"></i> New Registered User List</h4>
 <hr>
 <table class="table table-sm" id="customarlist" width="100%">
     <thead>
@@ -21,7 +21,6 @@
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
-            <th scope="col">Expiry date</th>
         </tr>
     </thead>
     <tbody>
@@ -29,25 +28,54 @@
         <tr>
             <th scope="row">1</th>
             <th>
-                <a href="#" class="btn btn-outline-warning btn-sm"><i
-                        class="fa fa-lock"></i></a>
+                <button title="Give owner access" class="btn btn-outline-success btn-sm" data-toggle="modal"
+                    data-target="#updateExpiryDate{{ $customar->id }}"><i
+                        class="fa fa-check"></i></button>
                 <form method="POST" action="{{ route('admin.delete_user') }}">
                     @csrf
                     <input name="id" type="hidden" value="{{$customar->id}}">
-                    <button type="submit" class="btn btn-xs btn-outline-danger btn-flat show_confirm"
+                    <button type="submit" class="btn btn-sm btn-outline-danger btn-flat show_confirm"
                         data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
                 </form>
             </th>
             <td>{{ $customar->name }}</td>
             <td>{{ $customar->phone_no }}</td>
             <td>{{ $customar->email }}</td>
-            <td>{{ $customar->active_till }}</td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
-
+@foreach ($customars as $customar)
+<!-- Modal -->
+<div class="modal fade" id="updateExpiryDate{{ $customar->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Owner Access <span
+                        class="badge badge-dark text-light">{{ $customar->name }}</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.give_owner_access') }}" method="post">
+                    @csrf
+                    <input name="customar_id" type="hidden" value="{{ $customar->id }}">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Expiry Date</label>
+                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email" name="expiry_date">
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 
 @endsection

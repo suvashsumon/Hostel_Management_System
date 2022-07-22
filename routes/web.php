@@ -34,6 +34,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
     Route::post('/expired-inactive-customar-list', [CustomarController::class, 'set_expiry_date'])->name('admin.set_expiry_date');
     Route::get('/new-user-list', [CustomarController::class, 'new_registered_users'])->name('new_registered_users');
     Route::post('/delete-user', [CustomarController::class, 'delete_user'])->name('admin.delete_user');
+    Route::post('/give-owner-access', [CustomarController::class, 'give_owner_access'])->name('admin.give_owner_access');
 });
 
 // mess authority routes

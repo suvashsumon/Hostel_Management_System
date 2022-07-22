@@ -33,7 +33,7 @@
                 <form method="POST" action="{{ route('admin.delete_user') }}">
                     @csrf
                     <input name="id" type="hidden" value="{{$customar->id}}">
-                    <button type="submit" class="btn btn-xs btn-outline-danger btn-flat show_confirm"
+                    <button type="submit" class="btn btn-sm btn-outline-danger btn-flat show_confirm"
                         data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
                 </form>
             </th>
