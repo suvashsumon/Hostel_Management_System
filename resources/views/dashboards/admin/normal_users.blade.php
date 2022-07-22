@@ -26,7 +26,7 @@
     <tbody>
         @foreach ($customars as $customar)
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{ $loop->index + 1 }}</th>
             <th>
                 <button title="Give owner access" class="btn btn-outline-success btn-sm" data-toggle="modal"
                     data-target="#updateExpiryDate{{ $customar->id }}"><i
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Expiry Date</label>
                         <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email" name="expiry_date">
+                            placeholder="Enter email" name="expiry_date" required>
                         <small id="emailHelp" class="form-text text-muted"></small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

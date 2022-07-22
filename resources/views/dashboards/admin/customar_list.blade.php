@@ -27,7 +27,7 @@
     <tbody>
         @foreach ($customars as $customar)
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{ $loop->index + 1 }}</th>
             <th>
                 <a href="#" class="btn btn-outline-warning btn-sm"><i class="fa fa-lock"></i></a>
                 <form method="POST" action="{{ route('admin.delete_user') }}">
