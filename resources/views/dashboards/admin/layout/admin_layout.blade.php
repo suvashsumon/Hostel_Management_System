@@ -38,7 +38,8 @@
 
 </head>
 
-<body data-base-url="http://127.0.0.1:8000">
+<body data-base-url="http://127.0.0.1:8000" @if(Session::has('flash'))
+    onload="flash_message('{{Session::get('flash')}}')" @endif>
     <div class="main-wrapper" id="app">
         <nav class="sidebar">
             <div class="sidebar-header">
@@ -123,8 +124,16 @@
     <script src="/assets/js/dashboard.js"></script>
     <script src="/assets/js/datepicker.js"></script>
 
+    <!-- sweet alart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    
     @yield('extra_js')
-
+    <script>
+        function flash_message(msg) {
+            //alert(msg);
+            swal("Message", msg, "info");
+        }
+    </script>
 
 
 </body>

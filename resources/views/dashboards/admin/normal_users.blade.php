@@ -1,8 +1,8 @@
 @extends('dashboards.admin.layout.admin_layout')
 
-@section('title', 'Active Customar List')
+@section('title', 'New Registered User List')
 @section('Customars', 'active')
-@section('active_customar_list', 'active')
+
 
 @section('extra_css')
 <link media="all" type="text/css" rel="stylesheet"
@@ -29,7 +29,8 @@
         <tr>
             <th scope="row">1</th>
             <th>
-                <a href="#" class="btn btn-outline-warning btn-sm"><i class="fa fa-lock"></i></a>
+                <a href="#" class="btn btn-outline-warning btn-sm"><i
+                        class="fa fa-lock"></i></a>
                 <form method="POST" action="{{ route('admin.delete_user') }}">
                     @csrf
                     <input name="id" type="hidden" value="{{$customar->id}}">
@@ -45,6 +46,10 @@
         @endforeach
     </tbody>
 </table>
+
+
+
+
 @endsection
 
 @section('extra_js')

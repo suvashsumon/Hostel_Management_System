@@ -27,10 +27,17 @@
         @foreach ($customars as $customar)
         <tr>
             <th scope="row">1</th>
-            <th><a class="btn btn-outline-danger btn-sm" href="#"><i class="fa fa-trash"></i></a> <a
-                    class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#updateExpiryDate{{ $customar->id }}"><i
-                        class="fa fa-rotate-right"></i></a> <a href="#" class="btn btn-outline-success btn-sm"><i
-                        class="fa fa-unlock"></i></a></th>
+            <th>
+                <a class="btn btn-outline-warning btn-sm" data-toggle="modal"
+                    data-target="#updateExpiryDate{{ $customar->id }}"><i class="fa fa-rotate-right"></i></a> <a
+                    href="#" class="btn btn-outline-success btn-sm"><i class="fa fa-unlock"></i></a>
+                <form method="POST" action="{{ route('admin.delete_user') }}">
+                    @csrf
+                    <input name="id" type="hidden" value="{{$customar->id}}">
+                    <button type="submit" class="btn btn-xs btn-outline-danger btn-flat show_confirm"
+                        data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
+                </form>
+            </th>
             <td>{{ $customar->name }}</td>
             <td>{{ $customar->phone_no }}</td>
             <td>{{ $customar->email }}</td>
@@ -42,12 +49,13 @@
 
 @foreach ($customars as $customar)
 <!-- Modal -->
-<div class="modal fade" id="updateExpiryDate{{ $customar->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="updateExpiryDate{{ $customar->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Update Customar Status <span class="badge badge-dark text-light">{{ $customar->name }}</span></h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Customar Status <span
+                        class="badge badge-dark text-light">{{ $customar->name }}</span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,6 +85,26 @@
 <script>
     $(document).ready(function () {
         $('#customarlist').DataTable();
+    });
+
+    
+    // delete confirmation sweet alart
+    $('.show_confirm').click(function (event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: `Are you sure you want to delete this record?`,
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
     });
 </script>
 @endsection

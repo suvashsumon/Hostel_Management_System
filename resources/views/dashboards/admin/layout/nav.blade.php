@@ -14,11 +14,14 @@
         </a>
         <div class="collapse " id="order">
             <ul class="nav sub-menu">
-                <li class="nav-item @yield('active_customar_list')">
+                <li class="nav-item">
                     <a href="{{ route('customar.list') }}" class="nav-link ">Active Customar List</a>
                 </li>
-                <li class="nav-item @yield('inactive_customar_list')">
+                <li class="nav-item">
                     <a href="{{ route('inactive.expired.customar.list') }}" class="nav-link ">Exp/Inactive Customars</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('new_registered_users') }}" class="nav-link ">New User List</a>
                 </li>
 
             </ul>

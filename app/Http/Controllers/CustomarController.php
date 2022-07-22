@@ -30,4 +30,18 @@ class CustomarController extends Controller
         $user->update();
         return redirect()->route('inactive.expired.customar.list');
     }
+
+    public function new_registered_users()
+    {
+        $data = User::where('role', '=', 'new_user')->get();
+        return view('dashboards.admin.normal_users', ['customars'=>$data]);
+    }
+
+    public function delete_user(Request $req)
+    {
+        $user = User::find($req->id);
+        //return $user;
+        $user->delete();
+        return redirect()->back()->with('flash','User is deleted.');
+    }
 }

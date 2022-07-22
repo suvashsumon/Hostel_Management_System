@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 255)->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('user_pic')->default('default_user.png');
             $table->foreignId('mess_id')->nullable()->constrained();
             $table->enum('role', ['admin', 'mess_owner', 'mess_manager', 'mess_boarder', 'new_user'])->default('new_user');
             $table->date('last_subscribed')->nullable();
