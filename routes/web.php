@@ -40,6 +40,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
 // mess authority routes
 Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isActive', 'isNotExpired']], function(){
     Route::get('/dashboard', [AuthorityController::class, 'index'])->name('authority.dashboard');
+    Route::get('/all-boarders', [AuthorityController::class, 'all_boarder'])->name('authority.all_boarders');
+    Route::get('/delete-boarder/{id}', [AuthorityController::class, 'delete_boarder'])->name('authority.delete_boarder');
 });
 
 

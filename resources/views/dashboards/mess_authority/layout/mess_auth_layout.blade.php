@@ -21,6 +21,11 @@
     <link media="all" type="text/css" rel="stylesheet" href="/assets/fonts/feather-font/css/iconfont.css">
     <link media="all" type="text/css" rel="stylesheet" href="/assets/plugins/perfect-scrollbar/perfect-scrollbar.css">
     <!-- end plugin css -->
+
+    <!-- bangla font cdn -->
+    <!-- <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet"> -->
+    <link href="https://fonts.maateen.me/siyam-rupali/font.css" rel="stylesheet">
+    
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link media="all" type="text/css" rel="stylesheet"
@@ -35,6 +40,12 @@
     <!-- end common css -->
     <script>jQuery.noConflict(true);</script>
     @yield('extra_css')
+
+    <style>
+        body {
+            font-family: 'SiyamRupali', Arial, sans-serif !important;
+        }
+    </style>
 
 </head>
 
@@ -94,7 +105,10 @@
                 @yield('contents')
             </div>
             <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-
+            <p class="text-gray text-center">Copyright by {{ config('app.name', 'Tinkers Ltd.') }} 2022. যেকোন প্রয়োজনে
+            যোগাযোগঃ
+            <b>01321 300 804</b>
+        </p>
             </footer>
         </div>
     </div>

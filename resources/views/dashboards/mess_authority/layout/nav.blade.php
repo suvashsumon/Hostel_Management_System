@@ -15,10 +15,10 @@
         <div class="collapse " id="order">
             <ul class="nav sub-menu">
                 <li class="nav-item">
-                    <a href="{{ route('customar.list') }}" class="nav-link ">Active Customar List</a>
+                    <a href="{{ route('authority.all_boarders') }}" class="nav-link ">সকল বোর্ডারগণ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('inactive.expired.customar.list') }}" class="nav-link ">Exp/Inactive Customars</a>
+                    <a href="{{ route('inactive.expired.customar.list') }}" class="nav-link ">নতুন বোর্ডার যুক্ত করুন</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('new_registered_users') }}" class="nav-link ">New User List</a>
