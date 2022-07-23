@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'isAuthority' => \App\Http\Middleware\IsAuthority::class,
         'isBoarder' => \App\Http\Middleware\IsBoarder::class,
         'isActive' => \App\Http\Middleware\CustomarStatus::class,
+        'isNotExpired' => \App\Http\Middleware\IsNotExpired::class,
     ];
 }

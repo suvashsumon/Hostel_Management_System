@@ -44,7 +44,7 @@
                     <div class="col-md-8 col-xl-6 col-sm-12 mx-auto">
                         <div class=" row approval_card">
                             <div class="col-lg-8 col-sm-12 d-flex flex-column p-5">
-
+                            {{ Auth::user() }}
                                 <h4 class="text-gray"><span style="color: rgb(250, 97, 8)"><b>দুঃখিত, 
                                         </b></span>{{ Auth::user()->name }}!</h4>
                                 <p class="text-success mb-3">আপনার একাউন্টটির মেয়াদ শেষ হয়েছে।</p>

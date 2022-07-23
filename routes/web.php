@@ -38,7 +38,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
 });
 
 // mess authority routes
-Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isActive']], function(){
+Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isActive', 'isNotExpired']], function(){
     Route::get('/dashboard', [AuthorityController::class, 'index'])->name('authority.dashboard');
 });
 
