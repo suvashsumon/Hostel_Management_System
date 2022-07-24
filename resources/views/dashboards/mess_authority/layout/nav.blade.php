@@ -5,7 +5,7 @@
             <span class="link-title">ড্যাশবোর্ড</span>
         </a>
     </li>
-    <li class="nav-item @yield('Customars')">
+    <li class="nav-item @yield('Boarders')">
         <a class="nav-link" data-toggle="collapse" href="#order" role="button" aria-expanded="false"
             aria-controls="order">
             <i class="link-icon" data-feather="users"></i>
@@ -27,8 +27,8 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item ">
-        <a href="http://127.0.0.1:8000/admin/password_reset_requests" class="nav-link">
+    <li class="nav-item @yield('Managers')">
+        <a href="{{ route('authority.managers') }}" class="nav-link">
             <i class="link-icon" data-feather="user-check"></i>
             <span class="link-title">ম্যানেজার</span>
         </a>

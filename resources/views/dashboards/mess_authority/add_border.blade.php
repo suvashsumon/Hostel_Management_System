@@ -1,11 +1,13 @@
 @extends('dashboards.mess_authority.layout.mess_auth_layout') @section('title',
-'Add Boarder') @section('Customars', 'active') @section('extra_css')
+'Add Boarder') @section('Boarders', 'active') @section('extra_css')
 <style>
     .profile-pic {
         border-radius: 50%;
     }
 </style>
 @endsection @section('contents')
+<h4><i data-feather="user-check"></i> বোর্ডার</h4>
+<br>
 <div class="row">
     <div class="col-md-6 mb-3">
         <div class="card">

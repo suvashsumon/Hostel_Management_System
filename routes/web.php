@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorityController;
 use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\CustomarController;
+use App\Http\Controllers\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::post('/register-boarder', [AuthorityController::class, 'register_boarder'])->name('authority.register_boarder');
     Route::get('/deactivate-boarder/{id}', [AuthorityController::class, 'deactivate_boarder'])->name('authority.deactivate_boarder');
     Route::get('/activate-boarder/{id}', [AuthorityController::class, 'activate_boarder'])->name('authority.activate_boarder');
+    Route::get('/managers', [ManagerController::class, 'index'])->name('authority.managers');
 });
 
 

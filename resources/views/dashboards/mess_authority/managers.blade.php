@@ -1,80 +1,177 @@
 @extends('dashboards.mess_authority.layout.mess_auth_layout') @section('title',
-'All Boarder List') @section('Customars', 'active') @section('extra_css')
-<link
-    media="all"
-    type="text/css"
-    rel="stylesheet"
-    href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"
-/>
+'Add Boarder') @section('Managers', 'active') @section('extra_css')
+<style>
+    .user-pic {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+</style>
 @endsection @section('contents')
+<h4><i data-feather="user-check"></i> ম্যানেজার</h4>
+<br />
 <div class="row">
-    <div class="col-md-11">
-        <h4><i class="fa fa-users"></i> সকল বোর্ডারগণ</h4>
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>ফোন নম্বর দিয়ে ম্যানেজার যুক্ত করুন</h5>
+            </div>
+            <div class="card-body">
+                <form
+                    class="form-inline"
+                    method="post"
+                    action="{{ route('authority.search_registered_user') }}"
+                >
+                    @csrf
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                ফোন নম্বর
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder="Ex. 017XXXXXXX"
+                            name="phone_no"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">
+                        যুক্ত করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>সকল ম্যানেজার</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ছবি</th>
+                            <th scope="col">তথ্য</th>
+                            <th scope="col">অ্যাকশন</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><img class="user-pic" src="/images/default_user.png"></th>
+                            <td>Mark Jukarbarg - 01717601509</td>
+                            <td><a class="btn btn-sm btn-danger confirm-delete" href="#">ডিলিট</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="col-md-1 text-right">
-        <a
-            class="btn btn-xm btn-primary"
-            href="{{ route('authority.add_boarder') }}"
-        >
-            <i class="fa fa-plus"></i>
-        </a>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>নতুন ম্যানেজার রেজিস্টার করুন</h5>
+            </div>
+            <div class="card-body">
+                <form
+                    action="{{ route('authority.register_boarder') }}"
+                    method="post"
+                >
+                    @csrf
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">নাম</div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control @error('name')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            name="name"
+                            value="{{ old('name') }}"
+                            required
+                        />
+                        @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                মোবাইল নম্বর
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control @error('phone_no')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder="Ex. 017XXXXXXX"
+                            name="phone_no"
+                            value="{{ old('phone_no') }}"
+                            required
+                        />
+                        @error('phone_no')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">ইমেইল</div>
+                        </div>
+                        <input
+                            type="email"
+                            class="form-control @error('email')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                        />
+                        @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                পাসওয়ার্ড
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control @error('password')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            name="password"
+                            value="{{ old('password') }}"
+                            required
+                        />
+                        @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">
+                        রেজিস্টার করুন
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-<hr />
-<table class="table table-sm" id="customarlist" width="100%">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">অ্যাকশন</th>
-            <th scope="col">নাম</th>
-            <th scope="col">ফোন নম্বর</th>
-            <th scope="col">ইমেল</th>
-            <th scope="col">যোগদানের তারিখ</th>
-            <th scope="col">অবস্থা</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($boarders as $boarder)
-        <tr>
-            <th scope="row">{{ $loop->index + 1 }}</th>
-            <th>
-                @if($boarder->status == 'active')
-                <a href="#" class="btn btn-warning btn-xs">বন্ধ</a>
-                @else
-                <a href="#" class="btn btn-info btn-xs">সচল</a>
-                @endif
-                <a
-                    href="{{ route('authority.delete_boarder', $boarder->id) }}"
-                    class="btn btn-danger btn-xs delete-confirm"
-                    >ডিলেট</a
-                >
-            </th>
-            <td>{{ $boarder->name }}</td>
-            <td>{{ $boarder->phone_no }}</td>
-            <td>{{ $boarder->email }}</td>
-            <td>{{ $boarder->last_subscribed }}</td>
-            <td>
-                @if($boarder->status == 'active')
-                <span class="text-success">সচল</span>
-                @else
-                <span class="text-danger">বন্ধ</span>
-                @endif
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-@endsection @section('extra_js')
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+@endsection
+
+@section('extra_js')
 <script>
-    $(".delete-confirm").on("click", function (event) {
+    $(".confirm-delete").on("click", function (event) {
         event.preventDefault();
         const url = $(this).attr("href");
         swal({
             title: "নিশ্চিত করুন",
-            text: "এই বোর্ডারের সকল তথ্য মুছে যাবে!",
+            text: "এই ম্যানেজার সকল তথ্য মুছে যাবে!",
             icon: "warning",
             dangerMode: true,
             buttons: ["বাতিল করুন", "ডিলিট!"],
