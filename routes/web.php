@@ -42,6 +42,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/dashboard', [AuthorityController::class, 'index'])->name('authority.dashboard');
     Route::get('/all-boarders', [AuthorityController::class, 'all_boarder'])->name('authority.all_boarders');
     Route::get('/delete-boarder/{id}', [AuthorityController::class, 'delete_boarder'])->name('authority.delete_boarder');
+    Route::get('/add-boarder', [AuthorityController::class, 'add_boarder_view'])->name('authority.add_boarder');
 });
 
 

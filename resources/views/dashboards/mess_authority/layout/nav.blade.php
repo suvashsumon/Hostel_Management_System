@@ -18,7 +18,7 @@
                     <a href="{{ route('authority.all_boarders') }}" class="nav-link ">সকল বোর্ডারগণ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('inactive.expired.customar.list') }}" class="nav-link ">নতুন বোর্ডার যুক্ত করুন</a>
+                    <a href="{{ route('authority.add_boarder') }}" class="nav-link ">নতুন বোর্ডার যুক্ত করুন</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('new_registered_users') }}" class="nav-link ">New User List</a>
@@ -29,14 +29,14 @@
     </li>
     <li class="nav-item ">
         <a href="http://127.0.0.1:8000/admin/password_reset_requests" class="nav-link">
-            <i class="link-icon" data-feather="edit"></i>
-            <span class="link-title">PRR's</span>
+            <i class="link-icon" data-feather="user-check"></i>
+            <span class="link-title">ম্যানেজার</span>
         </a>
     </li>
     <li class="nav-item @yield('settings')">
         <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
             <i class="link-icon" data-feather="settings"></i>
-            <span class="link-title">Settings</span>
+            <span class="link-title">সেটিংস</span>
         </a>
     </li>
 

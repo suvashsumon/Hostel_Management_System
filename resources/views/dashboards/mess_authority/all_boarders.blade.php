@@ -12,9 +12,9 @@
         <h4><i class="fa fa-users"></i> সকল বোর্ডারগণ</h4>
     </div>
     <div class="col-md-1 text-right">
-        <button class="btn btn-xm btn-primary">
+        <a class="btn btn-xm btn-primary" href="{{ route('authority.add_boarder') }}">
             <i class="fa fa-plus"></i>
-        </button>
+        </a>
     </div>
 </div>
 

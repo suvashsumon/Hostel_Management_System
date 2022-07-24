@@ -36,4 +36,14 @@ class AuthorityController extends Controller
         $boarder->delete();
         return redirect()->back()->with('flash', 'Boarder is deleted successfully');
     }
+
+    public function add_boarder_view()
+    {
+        return view('dashboards.mess_authority.add_border');
+    }
+
+    public function add_registered_boarder($id)
+    {
+
+    }
 }
