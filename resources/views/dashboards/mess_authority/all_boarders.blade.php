@@ -12,7 +12,10 @@
         <h4><i class="fa fa-users"></i> সকল বোর্ডারগণ</h4>
     </div>
     <div class="col-md-1 text-right">
-        <a class="btn btn-xm btn-primary" href="{{ route('authority.add_boarder') }}">
+        <a
+            class="btn btn-xm btn-primary"
+            href="{{ route('authority.add_boarder') }}"
+        >
             <i class="fa fa-plus"></i>
         </a>
     </div>
@@ -43,8 +46,7 @@
                 @endif
                 <a
                     href="{{ route('authority.delete_boarder', $boarder->id) }}"
-                    class="btn btn-danger btn-xs"
-                    onclick="conf_delete()"
+                    class="btn btn-danger btn-xs delete-confirm"
                     >ডিলেট</a
                 >
             </th>
@@ -67,24 +69,18 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $("#customarlist").DataTable();
-    });
-
-    // delete confirmation sweet alart
-    $(".show_confirm").click(function (event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
+    $(".delete-confirm").on("click", function (event) {
         event.preventDefault();
+        const url = $(this).attr("href");
         swal({
-            title: `Are you sure you want to delete this record?`,
-            text: "If you delete this, it will be gone forever.",
+            title: "নিশ্চিত করুন",
+            text: "এই বোর্ডারের সকল তথ্য মুছে যাবে!",
             icon: "warning",
-            buttons: true,
             dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                form.submit();
+            buttons: ["বাতিল করুন", "ডিলিট!"],
+        }).then(function (value) {
+            if (value) {
+                window.location.href = url;
             }
         });
     });
