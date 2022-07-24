@@ -94,4 +94,22 @@ class AuthorityController extends Controller
         $boarder->save();
         return back()->with('flash', 'বোর্ডার রেজিস্টার সফল হয়েছে!');
     }
+
+    public function deactivate_boarder($id)
+    {
+        $user = User::find($id);
+        $user->status = 'inactive';
+        $user->update();
+
+        return back()->with('flash', 'বোর্ডারের একাউন্টটি বন্ধ হয়েছে!');
+    }
+
+    public function activate_boarder($id)
+    {
+        $user = User::find($id);
+        $user->status = 'active';
+        $user->update();
+
+        return back()->with('flash', 'বোর্ডারের একাউন্টটি চালু হয়েছে!');
+    }
 }

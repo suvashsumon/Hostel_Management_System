@@ -45,6 +45,8 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/add-boarder', [AuthorityController::class, 'add_boarder_view'])->name('authority.add_boarder');
     Route::post('/search-registered-user', [AuthorityController::class, 'search_registered_user'])->name('authority.search_registered_user');
     Route::post('/register-boarder', [AuthorityController::class, 'register_boarder'])->name('authority.register_boarder');
+    Route::get('/deactivate-boarder/{id}', [AuthorityController::class, 'deactivate_boarder'])->name('authority.deactivate_boarder');
+    Route::get('/activate-boarder/{id}', [AuthorityController::class, 'activate_boarder'])->name('authority.activate_boarder');
 });
 
 

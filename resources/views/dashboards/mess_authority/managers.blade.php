@@ -40,9 +40,9 @@
             <th scope="row">{{ $loop->index + 1 }}</th>
             <th>
                 @if($boarder->status == 'active')
-                <a href="{{ route('authority.deactivate_boarder', $boarder->id) }}" class="btn btn-warning btn-xs deactivate-confirm">বন্ধ</a>
+                <a href="#" class="btn btn-warning btn-xs">বন্ধ</a>
                 @else
-                <a href="{{ route('authority.activate_boarder', $boarder->id) }}" class="btn btn-info btn-xs activate-confirm">সচল</a>
+                <a href="#" class="btn btn-info btn-xs">সচল</a>
                 @endif
                 <a
                     href="{{ route('authority.delete_boarder', $boarder->id) }}"
@@ -78,36 +78,6 @@
             icon: "warning",
             dangerMode: true,
             buttons: ["বাতিল করুন", "ডিলিট!"],
-        }).then(function (value) {
-            if (value) {
-                window.location.href = url;
-            }
-        });
-    });
-
-    $(".activate-confirm").on("click", function (event) {
-        event.preventDefault();
-        const url = $(this).attr("href");
-        swal({
-            title: "নিশ্চিত করুন",
-            text: "বোর্ডারের একাউন্টটি চালু করতে চান?",
-            icon: "warning",
-            buttons: ["বাতিল করুন", "চালু করুন"],
-        }).then(function (value) {
-            if (value) {
-                window.location.href = url;
-            }
-        });
-    });
-
-    $(".deactivate-confirm").on("click", function (event) {
-        event.preventDefault();
-        const url = $(this).attr("href");
-        swal({
-            title: "নিশ্চিত করুন",
-            text: "বোর্ডারের একাউন্টটি বন্ধ করতে চান?",
-            icon: "warning",
-            buttons: ["বাতিল করুন", "বন্ধ করুন"],
         }).then(function (value) {
             if (value) {
                 window.location.href = url;
