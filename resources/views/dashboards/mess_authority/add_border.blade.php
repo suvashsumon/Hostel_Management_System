@@ -48,18 +48,27 @@
                 <h5>নতুন বোর্ডার রেজিস্টার করুন</h5>
             </div>
             <div class="card-body">
-                <form>
+                <form
+                    action="{{ route('authority.register_boarder') }}"
+                    method="post"
+                >
+                    @csrf
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text text-dark">নাম</div>
                         </div>
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control @error('name')is-invalid @enderror"
                             id="inlineFormInputGroupUsername2"
                             placeholder=""
+                            name="name"
+                            value="{{ old('name') }}"
                             required
                         />
+                        @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
@@ -69,11 +78,33 @@
                         </div>
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control @error('phone_no')is-invalid @enderror"
                             id="inlineFormInputGroupUsername2"
                             placeholder="Ex. 017XXXXXXX"
+                            name="phone_no"
+                            value="{{ old('phone_no') }}"
                             required
                         />
+                        @error('phone_no')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">ইমেইল</div>
+                        </div>
+                        <input
+                            type="email"
+                            class="form-control @error('email')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                        />
+                        @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
@@ -83,26 +114,19 @@
                         </div>
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control @error('password')is-invalid @enderror"
                             id="inlineFormInputGroupUsername2"
                             placeholder=""
+                            name="password"
+                            value="{{ old('password') }}"
                             required
                         />
-                    </div>
-                    <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-dark">ইমেইল</div>
-                        </div>
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="inlineFormInputGroupUsername2"
-                            placeholder=""
-                            required
-                        />
+                        @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">
-                      রেজিস্টার করুন
+                        রেজিস্টার করুন
                     </button>
                 </form>
             </div>

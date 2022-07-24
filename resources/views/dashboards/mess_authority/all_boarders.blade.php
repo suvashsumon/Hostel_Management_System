@@ -36,7 +36,11 @@
         <tr>
             <th scope="row">{{ $loop->index + 1 }}</th>
             <th>
+                @if($boarder->status == 'active')
                 <a href="#" class="btn btn-warning btn-xs">বন্ধ</a>
+                @else
+                <a href="#" class="btn btn-info btn-xs">সচল</a>
+                @endif
                 <a
                     href="{{ route('authority.delete_boarder', $boarder->id) }}"
                     class="btn btn-danger btn-xs"
@@ -50,9 +54,9 @@
             <td>{{ $boarder->last_subscribed }}</td>
             <td>
                 @if($boarder->status == 'active')
-                <span class="badge badge-success">সচল</span>
+                <span class="text-success">সচল</span>
                 @else
-                <span class="badge badge-danger">বন্ধ</span>
+                <span class="text-danger">বন্ধ</span>
                 @endif
             </td>
         </tr>

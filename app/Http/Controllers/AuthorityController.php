@@ -71,4 +71,27 @@ class AuthorityController extends Controller
             return back()->with('flash', 'দুঃখিত, ইউজার খুঁজে পাওয়া যায়নি !');
         }
     }
+
+    public function register_boarder(Request $req)
+    {
+
+        $validatedData = $req->validate([
+            'name' => 'required',
+            'password' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'phone_no' => 'required|min:11|max:11|unique:users'
+        ]);
+
+        $boarder = new User();
+        $boarder->name = $req->name;
+        $boarder->phone_no = $req->phone_no;
+        $boarder->email = $req->email;
+        $boarder->password = \Hash::make($req->password);
+        $boarder->role = 'mess_boarder';
+        $boarder->status = 'active';
+        $boarder->mess_id = Auth::user()->mess_id;
+        $boarder->last_subscribed = date('Y-m-d');
+        $boarder->save();
+        return back()->with('flash', 'বোর্ডার রেজিস্টার সফল হয়েছে!');
+    }
 }
