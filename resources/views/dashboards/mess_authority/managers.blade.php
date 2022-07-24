@@ -20,7 +20,7 @@
                 <form
                     class="form-inline"
                     method="post"
-                    action="{{ route('authority.search_registered_user') }}"
+                    action="{{ route('authority.add_by_phone') }}"
                 >
                     @csrf
                     <div class="input-group mb-2 mr-sm-2">
@@ -50,7 +50,7 @@
                 <h5>সকল ম্যানেজার</h5>
             </div>
             <div class="card-body">
-                <table class="table table-striped">
+                <table class="table table-sm table-striped">
                     <thead>
                         <tr>
                             <th scope="col">ছবি</th>
@@ -59,11 +59,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($managers as $manager)
                         <tr>
                             <th scope="row"><img class="user-pic" src="/images/default_user.png"></th>
-                            <td>Mark Jukarbarg - 01717601509</td>
-                            <td><a class="btn btn-sm btn-danger confirm-delete" href="#">ডিলিট</a></td>
+                            <td>{{ $manager->name." - ".$manager->phone_no }}</td>
+                            <td><a class="btn btn-sm btn-danger confirm-delete" href="{{ route('authority.delete_manager', $manager->id)}}">ডিলিট</a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -77,7 +79,7 @@
             </div>
             <div class="card-body">
                 <form
-                    action="{{ route('authority.register_boarder') }}"
+                    action="{{ route('authority.register_manager') }}"
                     method="post"
                 >
                     @csrf

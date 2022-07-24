@@ -27,12 +27,14 @@
             </ul>
         </div>
     </li>
+    @if(Auth::user()->role != 'mess_manager')
     <li class="nav-item @yield('Managers')">
         <a href="{{ route('authority.managers') }}" class="nav-link">
             <i class="link-icon" data-feather="user-check"></i>
             <span class="link-title">ম্যানেজার</span>
         </a>
     </li>
+    @endif
     <li class="nav-item @yield('settings')">
         <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
             <i class="link-icon" data-feather="settings"></i>
