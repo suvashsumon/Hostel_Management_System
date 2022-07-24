@@ -47,7 +47,7 @@
             <td>{{ $boarder->name }}</td>
             <td>{{ $boarder->phone_no }}</td>
             <td>{{ $boarder->email }}</td>
-            <td>{{ $boarder->last_subscribe }}</td>
+            <td>{{ $boarder->last_subscribed }}</td>
             <td>
                 @if($boarder->status == 'active')
                 <span class="badge badge-success">সচল</span>

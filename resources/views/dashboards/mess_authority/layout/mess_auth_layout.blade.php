@@ -145,7 +145,7 @@
     <script>
         function flash_message(msg) {
             //alert(msg);
-            swal("Message", msg, "info");
+            swal("মেসেজ", msg, "info");
         }
     </script>
 

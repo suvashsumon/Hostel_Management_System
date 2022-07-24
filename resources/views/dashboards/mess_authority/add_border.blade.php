@@ -1,63 +1,112 @@
-@extends('dashboards.mess_authority.layout.mess_auth_layout')
-@section('title', 'Add Boarder')
-@section('Customars', 'active')
-
-@section('extra_css')
+@extends('dashboards.mess_authority.layout.mess_auth_layout') @section('title',
+'Add Boarder') @section('Customars', 'active') @section('extra_css')
 <style>
     .profile-pic {
         border-radius: 50%;
     }
 </style>
-@endsection
-
-@section('contents')
+@endsection @section('contents')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mb-3">
         <div class="card">
             <div class="card-header">
-                ফোন নম্বর দিয়ে বোর্ডার যুক্ত করুন
+                <h5>ফোন নম্বর দিয়ে বোর্ডার যুক্ত করুন</h5>
             </div>
             <div class="card-body">
-                <form class="form-inline">
-                    <div class="form-group mx-sm-5 mb-1">
-                      <label for="inputPassword2" class="sr-only">Password</label>
-                      <input type="number" class="form-control" id="inputPassword2" placeholder="ফোন নম্বর (ex. 017XXXXXXX">
+                <form
+                    class="form-inline"
+                    method="post"
+                    action="{{ route('authority.search_registered_user') }}"
+                >
+                    @csrf
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                ফোন নম্বর
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder="Ex. 017XXXXXXX"
+                            name="phone_no"
+                            required
+                        />
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2">খুঁজুন</button>
-                  </form>
-                  <br>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">ছবি</th>
-                        <th scope="col">ইনফরমেশন</th>
-                        <th scope="col">অ্যাকশন</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><img class="profile-pic" src="https://suvashkumar.netlify.app/images/sk.jpg" height="40px" width="40px"></th>
-                        <td>Mark</td>
-                        <td><a href="#" class="btn btn-sm btn-success">যুক্ত করুন</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p class="text-center">খুঁজে পাওয়া যায়নি!!</p>
+                    <button type="submit" class="btn btn-primary mb-2">
+                        যুক্ত করুন
+                    </button>
+                </form>
             </div>
-          </div>
+        </div>
     </div>
 
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-            নতুন বোর্ডার রেজিস্টার করুন
+                <h5>নতুন বোর্ডার রেজিস্টার করুন</h5>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+                <form>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">নাম</div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            required
+                        />
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                মোবাইল নম্বর
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder="Ex. 017XXXXXXX"
+                            required
+                        />
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                পাসওয়ার্ড
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            required
+                        />
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">ইমেইল</div>
+                        </div>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">
+                      রেজিস্টার করুন
+                    </button>
+                </form>
             </div>
-          </div>
+        </div>
     </div>
 </div>
 
