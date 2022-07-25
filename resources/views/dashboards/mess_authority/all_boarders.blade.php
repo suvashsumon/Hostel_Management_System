@@ -22,52 +22,67 @@
 </div>
 
 <hr />
-<table class="table table-sm" id="customarlist" width="100%">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">অ্যাকশন</th>
-            <th scope="col">নাম</th>
-            <th scope="col">ফোন নম্বর</th>
-            <th scope="col">ইমেল</th>
-            <th scope="col">যোগদানের তারিখ</th>
-            <th scope="col">অবস্থা</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($boarders as $boarder)
-        <tr>
-            <th scope="row">{{ $loop->index + 1 }}</th>
-            <th>
-                @if($boarder->status == 'active')
-                <a href="{{ route('authority.deactivate_boarder', $boarder->id) }}" class="btn btn-warning btn-xs deactivate-confirm">বন্ধ</a>
-                @else
-                <a href="{{ route('authority.activate_boarder', $boarder->id) }}" class="btn btn-info btn-xs activate-confirm">সচল</a>
-                @endif
-                <a
-                    href="{{ route('authority.delete_boarder', $boarder->id) }}"
-                    class="btn btn-danger btn-xs delete-confirm"
-                    >ডিলেট</a
-                >
-            </th>
-            <td>{{ $boarder->name }}</td>
-            <td>{{ $boarder->phone_no }}</td>
-            <td>{{ $boarder->email }}</td>
-            <td>{{ $boarder->last_subscribed }}</td>
-            <td>
-                @if($boarder->status == 'active')
-                <span class="text-success">সচল</span>
-                @else
-                <span class="text-danger">বন্ধ</span>
-                @endif
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-sm" id="customarlist" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">অ্যাকশন</th>
+                <th scope="col">নাম</th>
+                <th scope="col">ফোন নম্বর</th>
+                <th scope="col">ইমেল</th>
+                <th scope="col">যোগদানের তারিখ</th>
+                <th scope="col">অবস্থা</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($boarders as $boarder)
+            <tr>
+                <th scope="row">{{ $loop->index + 1 }}</th>
+                <th>
+                    @if($boarder->status == 'active')
+                    <a
+                        href="{{ route('authority.deactivate_boarder', $boarder->id) }}"
+                        class="btn btn-warning btn-xs deactivate-confirm"
+                        >বন্ধ</a
+                    >
+                    @else
+                    <a
+                        href="{{ route('authority.activate_boarder', $boarder->id) }}"
+                        class="btn btn-info btn-xs activate-confirm"
+                        >সচল</a
+                    >
+                    @endif
+                    <a
+                        href="{{ route('authority.delete_boarder', $boarder->id) }}"
+                        class="btn btn-danger btn-xs delete-confirm"
+                        >ডিলেট</a
+                    >
+                </th>
+                <td>{{ $boarder->name }}</td>
+                <td>{{ $boarder->phone_no }}</td>
+                <td>{{ $boarder->email }}</td>
+                <td>{{ $boarder->last_subscribed }}</td>
+                <td>
+                    @if($boarder->status == 'active')
+                    <span class="text-success">সচল</span>
+                    @else
+                    <span class="text-danger">বন্ধ</span>
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection @section('extra_js')
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#customarlist").DataTable();
+    });
+</script>
 <script>
     $(".delete-confirm").on("click", function (event) {
         event.preventDefault();

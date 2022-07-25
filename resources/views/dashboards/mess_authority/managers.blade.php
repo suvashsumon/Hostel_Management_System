@@ -49,8 +49,8 @@
             <div class="card-header">
                 <h5>সকল ম্যানেজার</h5>
             </div>
-            <div class="card-body">
-                <table class="table table-sm table-striped">
+            <div class="card-body table-responsive">
+                <table class="table table-sm table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ছবি</th>
