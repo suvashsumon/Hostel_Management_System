@@ -29,7 +29,7 @@
                         <input
                             type="text"
                             class="form-control @error('name')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
+                            id="name"
                             placeholder=""
                             name="name"
                             value="{{ Auth::user()->name }}"
@@ -48,7 +48,7 @@
                         <input
                             type="text"
                             class="form-control @error('phone_no')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
+                            id="phone_no"
                             placeholder="Ex. 017XXXXXXX"
                             name="phone_no"
                             value="{{ Auth::user()->phone_no }}"
@@ -65,7 +65,7 @@
                         <input
                             type="email"
                             class="form-control @error('email')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
+                            id="email"
                             placeholder=""
                             name="email"
                             value="{{ Auth::user()->email }}"
@@ -99,7 +99,7 @@
                         <input
                             type="password"
                             class="form-control @error('password')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
+                            id="password"
                             placeholder=""
                             name="password"
                             required
@@ -117,7 +117,7 @@
                         <input
                             type="password"
                             class="form-control @error('password_confirm')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
+                            id="new_password"
                             name="password_confirm"
                             required
                         />
@@ -141,7 +141,7 @@
             <div class="card-body">
                 <div class="text-center mb-3">
                     <img
-                        src="/images/default_user.png"
+                        src="/images/user_pic/{{ Auth::user()->user_pic }}"
                         class="user-pic"
                         id="previewImage"
                     />
@@ -149,19 +149,23 @@
                 <form
                     class="form-inline"
                     method="post"
-                    action="{{ route('authority.add_by_phone') }}"
+                    enctype="multipart/form-data"
+                    action="{{ route('authority.change_profile_pic') }}"
                 >
                     @csrf
                     <div class="custom-file mb-3">
                         <input
                             type="file"
-                            class="custom-file-input"
+                            class="custom-file-input @error('user_pic')is-invalid @enderror"
                             id="customFile"
                             name="user_pic"
                             onchange="loadFile(event)"
                         />
+                        @error('user_pic')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <label class="custom-file-label" for="customFile"
-                            >Choose file</label
+                            >ছবি নির্বাচন করুন</label
                         >
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">

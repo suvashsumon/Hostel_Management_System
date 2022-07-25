@@ -61,7 +61,7 @@
                     <tbody>
                         @foreach($managers as $manager)
                         <tr>
-                            <th scope="row"><img class="user-pic" src="/images/default_user.png"></th>
+                            <th scope="row"><img class="user-pic" src="/images/user_pic/{{ $manager->user_pic }}"></th>
                             <td>{{ $manager->name." - ".$manager->phone_no }}</td>
                             <td><a class="btn btn-sm btn-danger confirm-delete" href="{{ route('authority.delete_manager', $manager->id)}}">ডিলিট</a></td>
                         </tr>

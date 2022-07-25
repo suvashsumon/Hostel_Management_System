@@ -28,6 +28,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">অ্যাকশন</th>
+                <th scope="col">ছবি</th>
                 <th scope="col">নাম</th>
                 <th scope="col">ফোন নম্বর</th>
                 <th scope="col">ইমেল</th>
@@ -59,6 +60,7 @@
                         >ডিলেট</a
                     >
                 </th>
+                <td><img class="user-pic" src="/images/user_pic/{{ $boarder->user_pic }}"></td>
                 <td>{{ $boarder->name }}</td>
                 <td>{{ $boarder->phone_no }}</td>
                 <td>{{ $boarder->email }}</td>

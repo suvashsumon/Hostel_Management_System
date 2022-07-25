@@ -56,6 +56,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/settings', [AuthorityController::class, 'settings_view'])->name('authority.settings');
     Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('authority.change_password');
     Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('authority.change_personal_information');
+    Route::post('/change-profile-pic', [ProfileSettings::class, 'changeProfilePic'])->name('authority.change_profile_pic');
 });
 
 
