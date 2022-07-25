@@ -14,33 +14,66 @@
     <div class="col-md-6 mb-3">
         <div class="card">
             <div class="card-header">
-                <h5>প্রোফাইল পিকচার চেঞ্জ করুন</h5>
+                <h5>ব্যক্তিগত তথ্য পরিবর্তন করুন</h5>
             </div>
             <div class="card-body">
-                <div class="text-center mb-3">
-                    <img
-                        src="/images/default_user.png"
-                        class="user-pic"
-                        id="previewImage"
-                    />
-                </div>
                 <form
-                    class="form-inline"
+                    action="{{ route('authority.change_personal_information') }}"
                     method="post"
-                    action="{{ route('authority.add_by_phone') }}"
                 >
                     @csrf
-                    <div class="custom-file mb-3">
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">নাম</div>
+                        </div>
                         <input
-                            type="file"
-                            class="custom-file-input"
-                            id="customFile"
-                            name="user_pic"
-                            onchange="loadFile(event)"
+                            type="text"
+                            class="form-control @error('name')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            name="name"
+                            value="{{ Auth::user()->name }}"
+                            required
                         />
-                        <label class="custom-file-label" for="customFile"
-                            >Choose file</label
-                        >
+                        @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">
+                                মোবাইল নম্বর
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control @error('phone_no')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder="Ex. 017XXXXXXX"
+                            name="phone_no"
+                            value="{{ Auth::user()->phone_no }}"
+                            required
+                        />
+                        @error('phone_no')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-dark">ইমেইল</div>
+                        </div>
+                        <input
+                            type="email"
+                            class="form-control @error('email')is-invalid @enderror"
+                            id="inlineFormInputGroupUsername2"
+                            placeholder=""
+                            name="email"
+                            value="{{ Auth::user()->email }}"
+                            required
+                        />
+                        @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">
                         সেভ করুন
@@ -51,7 +84,7 @@
 
         <div class="card mt-3">
             <div class="card-header">
-                <h5>পাসওয়ার্ড চেঞ্জ করুন</h5>
+                <h5>পাসওয়ার্ড পরিবর্তন করুন</h5>
             </div>
             <div class="card-body">
                 <form
@@ -103,66 +136,33 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>ব্যক্তিগত তথ্য পরিবর্তন করুন</h5>
+                <h5>প্রোফাইল পিকচার পরিবর্তন করুন</h5>
             </div>
             <div class="card-body">
+                <div class="text-center mb-3">
+                    <img
+                        src="/images/default_user.png"
+                        class="user-pic"
+                        id="previewImage"
+                    />
+                </div>
                 <form
-                    action="{{ route('authority.register_manager') }}"
+                    class="form-inline"
                     method="post"
+                    action="{{ route('authority.add_by_phone') }}"
                 >
                     @csrf
-                    <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-dark">নাম</div>
-                        </div>
+                    <div class="custom-file mb-3">
                         <input
-                            type="text"
-                            class="form-control @error('name')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
-                            placeholder=""
-                            name="name"
-                            value="{{ old('name') }}"
-                            required
+                            type="file"
+                            class="custom-file-input"
+                            id="customFile"
+                            name="user_pic"
+                            onchange="loadFile(event)"
                         />
-                        @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-dark">
-                                মোবাইল নম্বর
-                            </div>
-                        </div>
-                        <input
-                            type="text"
-                            class="form-control @error('phone_no')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
-                            placeholder="Ex. 017XXXXXXX"
-                            name="phone_no"
-                            value="{{ old('phone_no') }}"
-                            required
-                        />
-                        @error('phone_no')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-dark">ইমেইল</div>
-                        </div>
-                        <input
-                            type="email"
-                            class="form-control @error('email')is-invalid @enderror"
-                            id="inlineFormInputGroupUsername2"
-                            placeholder=""
-                            name="email"
-                            value="{{ old('email') }}"
-                            required
-                        />
-                        @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label class="custom-file-label" for="customFile"
+                            >Choose file</label
+                        >
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">
                         সেভ করুন

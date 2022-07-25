@@ -55,6 +55,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/delete-manager/{id}', [ManagerController::class, 'delete_manager'])->name('authority.delete_manager');
     Route::get('/settings', [AuthorityController::class, 'settings_view'])->name('authority.settings');
     Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('authority.change_password');
+    Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('authority.change_personal_information');
 });
 
 
