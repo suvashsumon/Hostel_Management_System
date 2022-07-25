@@ -1,5 +1,5 @@
 @extends('dashboards.mess_authority.layout.mess_auth_layout') @section('title',
-'All Boarder List') @section('Customars', 'active') @section('extra_css')
+'All Boarder List') @section('Boarders', 'active') @section('extra_css')
 <link
     media="all"
     type="text/css"

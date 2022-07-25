@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthorityController;
 use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\CustomarController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ProfileSettings;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,8 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::post('/add-manager', [ManagerController::class, 'add_by_phone'])->name('authority.add_by_phone');
     Route::post('/register-manager', [ManagerController::class, 'register_manager'])->name('authority.register_manager');
     Route::get('/delete-manager/{id}', [ManagerController::class, 'delete_manager'])->name('authority.delete_manager');
+    Route::get('/settings', [AuthorityController::class, 'settings_view'])->name('authority.settings');
+    Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('authority.change_password');
 });
 
 

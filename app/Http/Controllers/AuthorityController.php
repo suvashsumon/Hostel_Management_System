@@ -13,6 +13,11 @@ class AuthorityController extends Controller
         return view('dashboards.mess_authority.index');
     }
 
+    public function settings_view()
+    {
+        return view('dashboards.mess_authority.settings');
+    }
+
     public function expired_user()
     {
         $user = Auth::user();

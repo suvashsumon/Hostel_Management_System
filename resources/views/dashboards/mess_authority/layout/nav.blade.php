@@ -35,8 +35,8 @@
         </a>
     </li>
     @endif
-    <li class="nav-item @yield('settings')">
-        <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
+    <li class="nav-item @yield('Settings')">
+        <a href="{{ route('authority.settings') }}" class="nav-link">
             <i class="link-icon" data-feather="settings"></i>
             <span class="link-title">সেটিংস</span>
         </a>
