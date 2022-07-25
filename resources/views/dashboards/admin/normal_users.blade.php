@@ -29,14 +29,8 @@
             <th scope="row">{{ $loop->index + 1 }}</th>
             <th>
                 <button title="Give owner access" class="btn btn-outline-success btn-sm" data-toggle="modal"
-                    data-target="#updateExpiryDate{{ $customar->id }}"><i
-                        class="fa fa-check"></i></button>
-                <form method="POST" action="{{ route('admin.delete_user') }}">
-                    @csrf
-                    <input name="id" type="hidden" value="{{$customar->id}}">
-                    <button type="submit" class="btn btn-sm btn-outline-danger btn-flat show_confirm"
-                        data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
-                </form>
+                    data-target="#updateExpiryDate{{ $customar->id }}">Owner Access</button>
+                <a class="btn btn-sm btn-outline-danger delete-confirm" href="{{ route('admin.delete_user', $customar->id) }}">Delete</a>
             </th>
             <td>{{ $customar->name }}</td>
             <td>{{ $customar->phone_no }}</td>
@@ -88,23 +82,20 @@
         $('#customarlist').DataTable();
     });
 
-    // delete confirmation sweet alart
-    $('.show_confirm').click(function (event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
+    $(".delete-confirm").on("click", function (event) {
         event.preventDefault();
+        const url = $(this).attr("href");
         swal({
-            title: `Are you sure you want to delete this record?`,
-            text: "If you delete this, it will be gone forever.",
+            title: "Alart",
+            text: "All the information of this user will be deleted!",
             icon: "warning",
-            buttons: true,
             dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    form.submit();
-                }
-            });
+            buttons: ["Cancel", "Delete!"],
+        }).then(function (value) {
+            if (value) {
+                window.location.href = url;
+            }
+        });
     });
 </script>
 @endsection

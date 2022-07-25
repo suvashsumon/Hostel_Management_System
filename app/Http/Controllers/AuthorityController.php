@@ -18,6 +18,11 @@ class AuthorityController extends Controller
         return view('dashboards.mess_authority.settings');
     }
 
+    public function deactive_account()
+    {
+        return view('dashboards.mess_authority.deactivate');
+    }
+
     public function expired_user()
     {
         $user = Auth::user();

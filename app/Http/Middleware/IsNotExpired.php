@@ -37,6 +37,10 @@ class IsNotExpired
         }
         else if($user->role == 'mess_manager' || $user->role == 'mess_boarder'){
             $mess_owner = User::where('mess_id', '=', $user->mess_id)->where('role', '=', 'mess_owner')->first();
+
+            // if mess_owner account is inactive
+            if($mess_owner->status == 'inactive') return redirect()->route('deactivated');
+
             $exp_date = new DateTime($mess_owner->active_till);
             $currentDate = new DateTime(date('Y-m-d'));
             if ($currentDate <= $exp_date) {

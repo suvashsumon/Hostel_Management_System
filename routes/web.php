@@ -26,7 +26,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/expired', [AuthorityController::class, 'expired_user'])->name('expired');
+Route::get('/account-expired', [AuthorityController::class, 'expired_user'])->name('expired');
+Route::get('/account-deactivated', [AuthorityController::class, 'deactive_account'])->name('deactivated');
 
 // admin routes
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
@@ -35,12 +36,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/expired-inactive-customar-list', [CustomarController::class, 'expired_inactive_customars'])->name('inactive.expired.customar.list');
     Route::post('/expired-inactive-customar-list', [CustomarController::class, 'set_expiry_date'])->name('admin.set_expiry_date');
     Route::get('/new-user-list', [CustomarController::class, 'new_registered_users'])->name('new_registered_users');
-    Route::post('/delete-user', [CustomarController::class, 'delete_user'])->name('admin.delete_user');
+    Route::get('/delete-user/{id}', [CustomarController::class, 'delete_user'])->name('admin.delete_user');
+    Route::get('/delete-mess-owner/{id}', [CustomarController::class, 'delete_mess_owner'])->name('admin.delete_mess_owner');
     Route::post('/give-owner-access', [CustomarController::class, 'give_owner_access'])->name('admin.give_owner_access');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('admin.change_password');
     Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('admin.change_personal_information');
     Route::post('/change-profile-pic', [ProfileSettings::class, 'changeProfilePic'])->name('admin.change_profile_pic');
+    Route::get('/deactivate-user/{id}', [CustomarController::class, 'deactivate_user'])->name('admin.deactivate_user');
+    Route::get('/activate-user/{id}', [CustomarController::class, 'activate_user'])->name('admin.activate_user');
 });
 
 // mess authority routes

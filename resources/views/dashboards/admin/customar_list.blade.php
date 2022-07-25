@@ -29,13 +29,8 @@
         <tr>
             <th scope="row">{{ $loop->index + 1 }}</th>
             <th>
-                <a href="#" class="btn btn-outline-warning btn-sm"><i class="fa fa-lock"></i></a>
-                <form method="POST" action="{{ route('admin.delete_user') }}">
-                    @csrf
-                    <input name="id" type="hidden" value="{{$customar->id}}">
-                    <button type="submit" class="btn btn-sm btn-outline-danger btn-flat show_confirm"
-                        data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
-                </form>
+                <a href="{{ route('admin.deactivate_user', $customar->id) }}" class="btn btn-outline-warning btn-sm deactive-confirm">Deactive</a>
+                <a href="{{ route('admin.delete_mess_owner', $customar->id)}}" class="btn btn-outline-danger btn-sm delete-confirm">Delete</a>
             </th>
             <td>{{ $customar->name }}</td>
             <td>{{ $customar->phone_no }}</td>
@@ -55,23 +50,36 @@
         $('#customarlist').DataTable();
     });
 
-    // delete confirmation sweet alart
-    $('.show_confirm').click(function (event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
+    $(".delete-confirm").on("click", function (event) {
         event.preventDefault();
+        const url = $(this).attr("href");
         swal({
-            title: `Are you sure you want to delete this record?`,
-            text: "If you delete this, it will be gone forever.",
+            title: "Alart",
+            text: "All the information of this user will be deleted!",
             icon: "warning",
-            buttons: true,
             dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    form.submit();
-                }
-            });
+            buttons: ["Cancel", "Delete!"],
+        }).then(function (value) {
+            if (value) {
+                window.location.href = url;
+            }
+        });
+    });
+
+    $(".deactive-confirm").on("click", function (event) {
+        event.preventDefault();
+        const url = $(this).attr("href");
+        swal({
+            title: "Alart",
+            text: "This user account will be deactivate!",
+            icon: "warning",
+            dangerMode: true,
+            buttons: ["Cancel", "Deactivate!"],
+        }).then(function (value) {
+            if (value) {
+                window.location.href = url;
+            }
+        });
     });
 </script>
 @endsection

@@ -38,11 +38,23 @@ class CustomarController extends Controller
         return view('dashboards.admin.normal_users', ['customars'=>$data]);
     }
 
-    public function delete_user(Request $req)
+    public function delete_user($id)
     {
-        $user = User::find($req->id);
+        $user = User::find($id);
         //return $user;
         $user->delete();
+        return redirect()->back()->with('flash','User is deleted.');
+    }
+
+    public function delete_mess_owner($id)
+    {
+        $user = User::find($id);
+        $mess_id = $user->mess_id;
+        $user->delete();
+
+        $mess = Mess::find($mess_id);
+        $mess->delete();
+
         return redirect()->back()->with('flash','User is deleted.');
     }
 
@@ -60,5 +72,23 @@ class CustomarController extends Controller
         $customar->active_till = $expiry_date;
         $customar->update();
         return redirect()->back()->with('flash', 'Data updated successfully');
+    }
+
+    public function deactivate_user($id)
+    {
+        $user = User::find($id);
+        $user->status = 'inactive';
+        $user->save();
+
+        return back()->with('flash', 'User account has been deactivated!');
+    }
+
+    public function activate_user($id)
+    {
+        $user = User::find($id);
+        $user->status = 'active';
+        $user->save();
+
+        return back()->with('flash', 'User account has been activated!');
     }
 }
