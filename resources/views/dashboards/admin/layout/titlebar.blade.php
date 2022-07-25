@@ -14,12 +14,12 @@
             <li class="nav-item dropdown nav-profile">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <img src="/images/default_user.png" alt="profile">
+                    <img src="/images/user_pic/{{ Auth::user()->user_pic }}" alt="profile">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     <div class="dropdown-header d-flex flex-column align-items-center">
                         <div class="figure mb-3">
-                            <img src="/images/default_user.png" alt="avatar">
+                            <img src="/images/user_pic/{{ Auth::user()->user_pic }}" alt="avatar">
                         </div>
                         <div class="info text-center">
                             <p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
@@ -31,19 +31,19 @@
 
 
                             <li class="nav-item">
-                                <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
+                                <a href="{{ route('admin.settings') }}" class="nav-link">
                                     <i data-feather="settings"></i>
                                     <span>Setting</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href=http://127.0.0.1:8000/logout
+                                <a class="nav-link" href=/logout
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i data-feather="log-out"></i>
                                     <span>Log Out</span>
                                 </a>
-                                <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST"
+                                <form id="logout-form" action="/logout" method="POST"
                                     class="d-none">
                                     @csrf
                                 </form>

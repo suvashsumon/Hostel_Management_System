@@ -33,7 +33,7 @@
             <span class="link-title">PRR's</span>
         </a>
     </li>
-    <li class="nav-item @yield('settings')">
+    <li class="nav-item @yield('Settings')">
         <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
             <i class="link-icon" data-feather="settings"></i>
             <span class="link-title">Settings</span>

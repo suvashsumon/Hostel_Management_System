@@ -31,19 +31,19 @@
 
 
                             <li class="nav-item">
-                                <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
+                                <a href="{{ route('authority.settings') }}" class="nav-link">
                                     <i data-feather="settings"></i>
                                     <span>সেটিংস</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href=http://127.0.0.1:8000/logout
+                                <a class="nav-link" href=/logout
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i data-feather="log-out"></i>
                                     <span>লগ আউট</span>
                                 </a>
-                                <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST"
+                                <form id="logout-form" action="/logout" method="POST"
                                     class="d-none">
                                     @csrf
                                 </form>

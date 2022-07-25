@@ -37,6 +37,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/new-user-list', [CustomarController::class, 'new_registered_users'])->name('new_registered_users');
     Route::post('/delete-user', [CustomarController::class, 'delete_user'])->name('admin.delete_user');
     Route::post('/give-owner-access', [CustomarController::class, 'give_owner_access'])->name('admin.give_owner_access');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('admin.change_password');
+    Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('admin.change_personal_information');
+    Route::post('/change-profile-pic', [ProfileSettings::class, 'changeProfilePic'])->name('admin.change_profile_pic');
 });
 
 // mess authority routes
