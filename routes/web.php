@@ -7,6 +7,7 @@ use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\CustomarController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileSettings;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,9 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('authority.change_password');
     Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('authority.change_personal_information');
     Route::post('/change-profile-pic', [ProfileSettings::class, 'changeProfilePic'])->name('authority.change_profile_pic');
+    Route::get('/groups', [GroupController::class, 'index'])->name('authority.groups');
+    Route::post('/create-groups', [GroupController::class, 'create_group'])->name('authority.create_groups');
+    Route::get('/delete-group/{id}', [GroupController::class, 'delete_group'])->name('authority.delete_groups');
 });
 
 
