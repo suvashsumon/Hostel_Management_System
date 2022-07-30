@@ -9,8 +9,10 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'mess_id'
-    ];
+    protected $fillable = ['name', 'mess_id'];
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'group_members');
+    }
 }

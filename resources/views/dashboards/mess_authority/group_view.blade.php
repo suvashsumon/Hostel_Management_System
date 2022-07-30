@@ -1,5 +1,5 @@
 @extends('dashboards.mess_authority.layout.mess_auth_layout')
-@section('title', 'Groups')
+@section('title', 'View Groups')
 @section('Boarders', 'active')
 @section('groups', 'active')
 @section('extra_css')
@@ -16,14 +16,15 @@
     <div class="col-md-6 mb-3">
         <div class="card">
             <div class="card-header">
-                <h5>নতুন গ্রুপ তৈরী করুন</h5>
+                <h5>গ্রুপের বিবরণ</h5>
             </div>
             <div class="card-body">
                 <form
                     method="post"
-                    action="{{ route('authority.create_groups') }}"
+                    action="{{ route('authority.update_group_info') }}"
                 >
                     @csrf
+                    <input type="hidden" name="group_id" value="{{ $group_info->id }}">
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text text-dark">নাম</div>
@@ -34,7 +35,7 @@
                             id="inlineFormInputGroupGroupName2"
                             placeholder=""
                             name="group_name"
-                            value="{{ old('group_name') }}"
+                            value="{{ $group_info->name }}"
                             required
                         />
                         @error('group_name')
@@ -52,19 +53,39 @@
                             placeholder=""
                             rows="2"
                             name="description"
-                            value="{{ old('description') }}"
-                        ></textarea>
+                        >{{ $group_info->description }}</textarea>
                         @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <button type="submit" class="btn btn-primary mb-2">
+                    সেভ করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>মেম্বার যোগ করুন</h5>
+            </div>
+            <div class="card-body">
+                <form
+                    method="post"
+                    action="{{ route('authority.add_member_to_group') }}"
+                >
+                    @csrf
+                    <input type="hidden" name="group_id" value="{{ $group_info->id }}">
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text text-dark">মেম্বার্স</div>
                         </div>
                         <select id="multiple" class="form-control form-control-chosen @error('boarder_select')is-invalid @enderror" data-placeholder="বোর্ডার নির্বাচন করুন" name="boarder_select[]" multiple>
-                            @foreach ($boarders as $boarder)
+                            @foreach ($not_members as $boarder)
+                            @if($boarder->isMember == false)
                             <option value="{{ $boarder->id }}">{{ $boarder->name." - ".$boarder->phone_no}}</option>
+                            @endif
                             @endforeach
                         </select>
                         @error('boarder_select')
@@ -72,7 +93,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">
-                    তৈরী করুন
+                    যোগ করুন
                     </button>
                 </form>
             </div>
@@ -82,7 +103,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>সকল গ্রুপ</h5>
+                <h5>গ্রুপের মেম্বারগণ</h5>
             </div>
             <div class="card-body">
             <table class="table table-sm">
@@ -90,19 +111,26 @@
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">নাম</th>
-                    <th scope="col">বিবরণ</th>
+                    <th scope="col">ফোন</th>
+                    <th scope="col">স্ট্যাটাস</th>
                     <th scope="col">অ্যাকশন</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($groups as $group)
+                    @foreach($group_members as $g_member)
                     <tr>
                     <th scope="row">{{ $loop->index+1 }}</th>
-                    <td>{{ $group->name }}</td>
-                    <td>{{ $group->description }}</td>
+                    <td>{{ $g_member->user->name }}</td>
+                    <td>{{ $g_member->user->phone_no }}</td>
                     <td>
-                        <a class="btn btn-sm btn-warning" href="{{ route('authority.view_groups', $group->id) }}">এডিট</a>
-                        <a class="btn btn-sm btn-danger delete-confirm" href="{{ route('authority.delete_groups', $group->id) }}">ডিলিট</a>
+                        @if($g_member->user->status == 'active')
+                        <span class="text-success">সচল</span>
+                        @else
+                        <span class="text-success">বন্ধ</span>
+                        @endif
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-danger delete-confirm" href="{{ route('authority.remove_group_member', $g_member->id) }}">বাদ দিন</a>
                     </td>
                     </tr>
                     @endforeach
@@ -126,7 +154,7 @@
         const url = $(this).attr("href");
         swal({
             title: "নিশ্চিত করুন",
-            text: "এই গ্রুপের সকল তথ্য মুছে যাবে!",
+            text: "এই বর্ডার গ্রুপ থেকে বাদ যাবে!",
             icon: "warning",
             dangerMode: true,
             buttons: ["বাতিল করুন", "ডিলিট!"],

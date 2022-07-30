@@ -69,6 +69,10 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/groups', [GroupController::class, 'index'])->name('authority.groups');
     Route::post('/create-groups', [GroupController::class, 'create_group'])->name('authority.create_groups');
     Route::get('/delete-group/{id}', [GroupController::class, 'delete_group'])->name('authority.delete_groups');
+    Route::get('/view-group/{id}', [GroupController::class, 'view_group'])->name('authority.view_groups');
+    Route::get('/remove-group-member/{id}', [GroupController::class, 'remove_group_member'])->name('authority.remove_group_member');
+    Route::post('/update-group-info', [GroupController::class, 'update_group_info'])->name('authority.update_group_info');
+    Route::post('/add-member-to-group', [GroupController::class, 'add_member_to_group'])->name('authority.add_member_to_group');
 });
 
 

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class GroupMember extends Model
 {
     use HasFactory;
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
 }
