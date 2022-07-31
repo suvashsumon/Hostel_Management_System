@@ -10,7 +10,7 @@
     }
 </style>
 @endsection @section('contents')
-<h4><i data-feather="users"></i> গ্রুপ</h4>
+<h4><i data-feather="users"></i> গ্রুপ - {{ $group_info->name }}</h4>
 <br>
 <div class="row">
     <div class="col-md-6 mb-3">
