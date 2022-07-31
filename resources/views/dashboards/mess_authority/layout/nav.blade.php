@@ -28,6 +28,29 @@
             </ul>
         </div>
     </li>
+    <li class="nav-item @yield('Bill')">
+        <a class="nav-link" data-toggle="collapse" href="#bill" role="button" aria-expanded="false"
+            aria-controls="bill">
+            <i class="link-icon" data-feather="dollar-sign"></i>
+            <span class="link-title">বিল</span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse " id="bill">
+            <ul class="nav sub-menu">
+                <li class="nav-item">
+                    <a href="{{ route('authority.bill_index') }}" class="nav-link @yield('all_boarders')">নতুন বিল তৈরী করুন</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('authority.add_boarder') }}" class="nav-link @yield('add_boarder')">নতুন বোর্ডার যুক্ত করুন</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('authority.groups') }}" class="nav-link @yield('groups')">গ্রুপ</a>
+                </li>
+                
+
+            </ul>
+        </div>
+    </li>
     @if(Auth::user()->role != 'mess_manager')
     <li class="nav-item @yield('Managers')">
         <a href="{{ route('authority.managers') }}" class="nav-link">

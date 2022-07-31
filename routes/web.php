@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomarController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileSettings;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\BillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/remove-group-member/{id}', [GroupController::class, 'remove_group_member'])->name('authority.remove_group_member');
     Route::post('/update-group-info', [GroupController::class, 'update_group_info'])->name('authority.update_group_info');
     Route::post('/add-member-to-group', [GroupController::class, 'add_member_to_group'])->name('authority.add_member_to_group');
+    Route::get('/bill-index', [BillController::class, 'index'])->name('authority.bill_index');
 });
 
 
