@@ -16,7 +16,8 @@
         <div class="card">
             <h5 class="card-header">নতুন বিল তৈরী করুন</h5>
             <div class="card-body">
-                <form>
+                <form action="{{ route('authority.create_bill') }}" method="post">
+                    @csrf
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span
@@ -30,12 +31,15 @@
                             class="form-control"
                             id="validationCustomUsername"
                             placeholder=""
+                            name="bill_name"
                             aria-describedby="inputGroupPrepend"
                             required
                         />
+                        @error('bill_name')
                         <div class="invalid-feedback">
-                            Please choose a username.
+                            {{ $message }}
                         </div>
+                        @enderror
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mt-2">
@@ -52,6 +56,7 @@
                                     class="form-control text-dark"
                                     id="validationCustomUsername"
                                     placeholder=""
+                                    name="month"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 >
@@ -70,9 +75,11 @@
                                     <option value="November">নভেম্বর</option>
                                     <option value="December">ডিসেম্বর</option>
                                 </select>
+                                @error('month')
                                 <div class="invalid-feedback">
-                                    Please choose a username.
+                                    {{ $message }}
                                 </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6 mt-2">
@@ -89,6 +96,7 @@
                                     class="form-control text-dark"
                                     id="validationCustomUsername"
                                     placeholder=""
+                                    name="year"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 >
@@ -103,9 +111,11 @@
                                     <option value="2030">2030</option>
                                     <option value="2031">2031</option>
                                 </select>
+                                @error('year')
                                 <div class="invalid-feedback">
-                                    Please choose a username.
+                                    {{ $message }}
                                 </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -125,12 +135,15 @@
                                     class="form-control text-dark"
                                     id="validationCustomUsername"
                                     placeholder=""
+                                    name="amount"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 />
+                                @error('amount')
                                 <div class="invalid-feedback">
-                                    Please choose a username.
+                                    {{ $message }}
                                 </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6 mt-2">
@@ -147,12 +160,15 @@
                                     class="form-control text-dark"
                                     id="validationCustomUsername"
                                     placeholder=""
+                                    name="last_date"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 />
+                                @error('last_date')
                                 <div class="invalid-feedback">
-                                    Please choose a username.
+                                    {{ $message }}
                                 </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -160,18 +176,23 @@
 
                     <div class="form-group mt-2">
                         <label for="inputPassword4"><b>বিল আপ্লাই করার জন্য সিলেক্ট করুন:</b></label>
-                        <select id="optgroup" class="form-control form-control-chosen" data-placeholder="Please select..." multiple>
+                        <select id="optgroup" class="form-control form-control-chosen" name="apply_to[]" data-placeholder="Please select..." multiple>
                             <optgroup label="গ্রুপ">
                             @foreach($groups as $group)
-                              <option value="{{ $group->id }}">{{ $group->name }}</option>
+                              <option value="group;{{ $group->id }}">{{ $group->name }}</option>
                             @endforeach
                             </optgroup>
                             <optgroup label="বোর্ডার">
                             @foreach($boarders as $boarder)
-                              <option value="{{ $boarder->id }}">{{ $boarder->name }}</option>
+                              <option value="boarder;{{ $boarder->id }}">{{ $boarder->name }}</option>
                             @endforeach
                             </optgroup>
                           </select>
+                            @error('apply_to')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
 
                     
@@ -189,8 +210,7 @@
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
+                    {{ $current_month_bill }}
                 </p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>

@@ -75,6 +75,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::post('/update-group-info', [GroupController::class, 'update_group_info'])->name('authority.update_group_info');
     Route::post('/add-member-to-group', [GroupController::class, 'add_member_to_group'])->name('authority.add_member_to_group');
     Route::get('/bill-index', [BillController::class, 'index'])->name('authority.bill_index');
+    Route::post('/create-bill', [BillController::class, 'create_bill'])->name('authority.create_bill');
 });
 
 
