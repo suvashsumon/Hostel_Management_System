@@ -12,13 +12,14 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <h5 class="card-header">নতুন বিল তৈরী করুন</h5>
+            <h5 class="card-header">বিলের তথ্য</h5>
             <div class="card-body">
                 <form
-                    action="{{ route('authority.create_bill') }}"
+                    action="{{ route('authority.edit_bill') }}"
                     method="post"
                 >
                     @csrf
+                    <input type="hidden" name="id" value="{{ $bill_info->id }}">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span
@@ -32,6 +33,7 @@
                             class="form-control"
                             id="validationCustomUsername"
                             placeholder=""
+                            value="{{ $bill_info->name }}"
                             name="bill_name"
                             aria-describedby="inputGroupPrepend"
                             required
@@ -56,25 +58,24 @@
                                     type="text"
                                     class="form-control text-dark"
                                     id="validationCustomUsername"
-                                    placeholder=""
                                     name="month"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 >
-                                    <option value="January">জানুয়ারী</option>
-                                    <option value="February">ফেব্রুয়ারী</option>
-                                    <option value="March">মার্চ</option>
-                                    <option value="April">এপ্রিল</option>
-                                    <option value="May">মে</option>
-                                    <option value="June">জুন</option>
-                                    <option value="July">জুলাই</option>
-                                    <option value="August">অগাস্ট</option>
-                                    <option value="September">
+                                    <option value="January" @if($bill_info->month == 'January') selected @endif>জানুয়ারী</option>
+                                    <option value="February" @if($bill_info->month == 'February') selected @endif>ফেব্রুয়ারী</option>
+                                    <option value="March" @if($bill_info->month == 'March') selected @endif>মার্চ</option>
+                                    <option value="April" @if($bill_info->month == 'April') selected @endif>এপ্রিল</option>
+                                    <option value="May" @if($bill_info->month == 'May') selected @endif>মে</option>
+                                    <option value="June" @if($bill_info->month == 'June') selected @endif>জুন</option>
+                                    <option value="July" @if($bill_info->month == 'July') selected @endif>জুলাই</option>
+                                    <option value="August" @if($bill_info->month == 'August') selected @endif>অগাস্ট</option>
+                                    <option value="September" @if($bill_info->month == 'September') selected @endif>
                                         সেপ্টেম্বর
                                     </option>
-                                    <option value="October">অক্টোবর</option>
-                                    <option value="November">নভেম্বর</option>
-                                    <option value="December">ডিসেম্বর</option>
+                                    <option value="October" @if($bill_info->month == 'October') selected @endif>অক্টোবর</option>
+                                    <option value="November" @if($bill_info->month == 'November') selected @endif>নভেম্বর</option>
+                                    <option value="December" @if($bill_info->month == 'December') selected @endif>ডিসেম্বর</option>
                                 </select>
                                 @error('month')
                                 <div class="invalid-feedback">
@@ -96,21 +97,21 @@
                                     type="text"
                                     class="form-control text-dark"
                                     id="validationCustomUsername"
-                                    placeholder=""
                                     name="year"
+                                    value="{{ $bill_info->year }}"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 >
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
-                                    <option value="2027">2027</option>
-                                    <option value="2028">2028</option>
-                                    <option value="2029">2029</option>
-                                    <option value="2030">2030</option>
-                                    <option value="2031">2031</option>
+                                    <option value="2022" @if($bill_info->year == '2022') selected @endif>2022</option>
+                                    <option value="2023" @if($bill_info->year == '2023') selected @endif>2023</option>
+                                    <option value="2024" @if($bill_info->year == '2024') selected @endif>2024</option>
+                                    <option value="2025" @if($bill_info->year == '2025') selected @endif>2025</option>
+                                    <option value="2026" @if($bill_info->year == '2026') selected @endif>2026</option>
+                                    <option value="2027" @if($bill_info->year == '2027') selected @endif>2027</option>
+                                    <option value="2028" @if($bill_info->year == '2028') selected @endif>2028</option>
+                                    <option value="2029" @if($bill_info->year == '2029') selected @endif>2029</option>
+                                    <option value="2030" @if($bill_info->year == '2030') selected @endif>2030</option>
+                                    <option value="2031" @if($bill_info->year == '2031') selected @endif>2031</option>
                                 </select>
                                 @error('year')
                                 <div class="invalid-feedback">
@@ -137,6 +138,7 @@
                                     id="validationCustomUsername"
                                     placeholder=""
                                     name="amount"
+                                    value="{{ $bill_info->amount }}"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 />
@@ -162,6 +164,7 @@
                                     id="validationCustomUsername"
                                     placeholder=""
                                     name="last_date"
+                                    value="{{ $bill_info->last_date }}"
                                     aria-describedby="inputGroupPrepend"
                                     required
                                 />
@@ -217,30 +220,28 @@
 
     <div class="col-md-6">
         <div class="card">
-            <h5 class="card-header">চলতি মাসের সকল বিল</h5>
+            <h5 class="card-header">যারা পে করবে</h5>
             <div class="card-body">
                 <table class=" table table-sm table-hover table-responsive-sm" id="customarlist" width="100%">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">নাম</th>
-                            <th scope="col">পরিমান</th>
-                            <th scope="col">লাস্ট ডেট</th>
+                            <th scope="col">স্ট্যাটাস</th>
                             <th scope="col">অ্যাকশন</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($current_month_bill as $cmb)
+                        @foreach($applied_boarder as $apb)
                         <tr scope="row">
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $cmb->name }}</td>
-                            <td>{{ $cmb->amount }}</td>
-                            <td>{{ $cmb->last_date }}</td>
+                            <td>{{ $apb->user->name }}</td>
+                            <td>{{ $apb->status }}</td>
                             <td>
-                                <a href="{{ route('authority.view_bill', $cmb->id) }}" class="btn btn-sm btn-warning"
+                                <a href="#" class="btn btn-sm btn-warning"
                                     >View</a
                                 >
-                                <a href="{{ route('authority.delete_bill', $cmb->id) }}" class="btn btn-sm btn-danger delete-confirm"
+                                <a href="{{ route('authority.delete_bill_user', $apb->id) }}" class="btn btn-sm btn-danger delete-confirm"
                                     >Delete</a
                                 >
                             </td>
