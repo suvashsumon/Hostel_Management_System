@@ -77,7 +77,21 @@ class BillController extends Controller
 
         foreach ($bill_apply_to as $bapply) {
             $target = explode(';', $bapply);
-            if ($target[0] == 'group') {
+            if ($target[0] == 'all_boarder') {
+                $users = User::where('mess_id', '=', Auth::user()->mess_id)
+                    ->where('role', '=', 'mess_boarder')
+                    ->where('status', '=', 'active')
+                    ->get();
+                //dd($users);
+                foreach ($users as $user) {
+                    if ($this->isNotApplied($user->id, $bill->id)) {
+                        $billuser = new BillUser();
+                        $billuser->bill_id = $bill->id;
+                        $billuser->user_id = $user->id;
+                        $billuser->save();
+                    }
+                }
+            } elseif ($target[0] == 'group') {
                 // fetching the group members
                 $groupMembers = GroupMember::where('group_id', '=', $target[1])
                     ->with('user')
@@ -132,7 +146,9 @@ class BillController extends Controller
             ->where('role', '=', 'mess_boarder')
             ->where('status', '=', 'active')
             ->get();
-        $applied_boarder = BillUser::where('bill_id', '=', $id)->with('user')->get();
+        $applied_boarder = BillUser::where('bill_id', '=', $id)
+            ->with('user')
+            ->get();
         //dd($applied_boarder);
         return view('dashboards.mess_authority.view_bill', [
             'groups' => $groups,
@@ -164,7 +180,21 @@ class BillController extends Controller
         if ($bill_apply_to != null) {
             foreach ($bill_apply_to as $bapply) {
                 $target = explode(';', $bapply);
-                if ($target[0] == 'group') {
+                if ($target[0] == 'all_boarder') {
+                    $users = User::where('mess_id', '=', Auth::user()->mess_id)
+                        ->where('role', '=', 'mess_boarder')
+                        ->where('status', '=', 'active')
+                        ->get();
+                    //dd($users);
+                    foreach ($users as $user) {
+                        if ($this->isNotApplied($user->id, $bill->id)) {
+                            $billuser = new BillUser();
+                            $billuser->bill_id = $bill->id;
+                            $billuser->user_id = $user->id;
+                            $billuser->save();
+                        }
+                    }
+                } elseif ($target[0] == 'group') {
                     // fetching the group members
                     $groupMembers = GroupMember::where(
                         'group_id',
@@ -214,5 +244,15 @@ class BillController extends Controller
         $bill_user = BillUser::find($id);
         $bill_user->delete();
         return back()->with('flash', 'ডিলিট করা হয়েছে!');
+    }
+
+    public function bill_history()
+    {
+        $bills = Bill::where('mess_id', '=', Auth::user()->mess_id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('dashboards.mess_authority.bill_history', [
+            'bills' => $bills,
+        ]);
     }
 }

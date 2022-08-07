@@ -185,6 +185,9 @@
                             data-placeholder="Please select..."
                             multiple
                         >
+                        <optgroup label="সকল">
+                                <option value="all_boarder">সকল বোর্ডার</option>
+                            </optgroup>
                             <optgroup label="গ্রুপ">
                                 @foreach($groups as $group)
                                 <option value="group;{{ $group->id }}">

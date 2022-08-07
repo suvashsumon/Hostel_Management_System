@@ -38,13 +38,10 @@
         <div class="collapse " id="bill">
             <ul class="nav sub-menu">
                 <li class="nav-item">
-                    <a href="{{ route('authority.bill_index') }}" class="nav-link @yield('all_boarders')">নতুন বিল তৈরী করুন</a>
+                    <a href="{{ route('authority.bill_index') }}" class="nav-link @yield('new_bill')">নতুন বিল</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('authority.add_boarder') }}" class="nav-link @yield('add_boarder')">নতুন বোর্ডার যুক্ত করুন</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('authority.groups') }}" class="nav-link @yield('groups')">গ্রুপ</a>
+                    <a href="{{ route('authority.bill_history') }}" class="nav-link @yield('all_bill')">সকল বিল</a>
                 </li>
                 
 

@@ -80,6 +80,7 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
     Route::get('/bill-details/{id}', [BillController::class, 'view_bill'])->name('authority.view_bill');
     Route::post('/edit-bill', [BillController::class, 'edit_bill'])->name('authority.edit_bill');
     Route::get('/delete-bill-user/{id}', [BillController::class, 'delete_bill_user'])->name('authority.delete_bill_user');
+    Route::get('/bill-history', [BillController::class, 'bill_history'])->name('authority.bill_history');
 });
 
 
