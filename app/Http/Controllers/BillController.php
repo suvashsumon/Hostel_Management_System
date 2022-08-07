@@ -33,7 +33,7 @@ class BillController extends Controller
             ->where('status', '=', 'active')
             ->get();
         $current_month_bill = Bill::where('month', '=', $month_name[date('m')])
-            ->where('year', '=', date('Y'))
+            ->where('year', '=', date('Y'))->where('mess_id', '=', Auth::user()->mess_id)
             ->get();
         return view('dashboards.mess_authority.bill', [
             'groups' => $groups,
@@ -134,6 +134,7 @@ class BillController extends Controller
     public function delete_bill($id)
     {
         $bill = Bill::find($id);
+        if($bill->mess_id != Auth::user()->mess_id) return abort(404);
         $bill->delete();
         return back()->with('flash', 'বিল ডিলিট করা হয়েছে!');
     }
@@ -141,6 +142,7 @@ class BillController extends Controller
     public function view_bill($id)
     {
         $bill_info = Bill::find($id);
+        if($bill_info->mess_id != Auth::user()->mess_id) return abort(404);
         $groups = Group::where('mess_id', '=', Auth::user()->mess_id)->get();
         $boarders = User::where('mess_id', '=', Auth::user()->mess_id)
             ->where('role', '=', 'mess_boarder')
@@ -242,6 +244,8 @@ class BillController extends Controller
     public function delete_bill_user($id)
     {
         $bill_user = BillUser::find($id);
+        $bill = Bill::find($bill_user->bill_id);
+        if($bill->mess_id != Auth::user()->mess_id) return abort(404);
         $bill_user->delete();
         return back()->with('flash', 'ডিলিট করা হয়েছে!');
     }
