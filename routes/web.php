@@ -87,4 +87,9 @@ Route::group(['prefix'=>'mess_auth', 'middleware'=>['auth', 'isAuthority', 'isAc
 // boarder routes
 Route::group(['prefix'=>'boarder', 'middleware'=>['auth', 'isBoarder']], function(){
     Route::get('/dashboard', [BoarderController::class, 'index'])->name('boarder.dashboard');
+    Route::get('/notifications', [BoarderController::class, 'notifications'])->name('boarder.notifications');
+    Route::get('/settings', [BoarderController::class, 'settings_view'])->name('boarder.settings');
+    Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('boarder.change_password');
+    Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('boarder.change_personal_information');
+    Route::post('/change-profile-pic', [ProfileSettings::class, 'changeProfilePic'])->name('boarder.change_profile_pic');
 });

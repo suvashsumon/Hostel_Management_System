@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Bill;
 use App\Models\BillUser;
 use App\Models\GroupMember;
+use App\Models\Notification;
 
 class BillController extends Controller
 {
@@ -40,6 +41,17 @@ class BillController extends Controller
             'boarders' => $boarders,
             'current_month_bill' => $current_month_bill,
         ]);
+    }
+
+    function notify($boarder_id, $bill_id)
+    {
+        $bill = Bill::find($bill_id);
+        $notification = new Notification();
+        $notification->user_id = $boarder_id;
+        $notification->mess_id = Auth::user()->mess_id;
+        $notification->bill_id = $bill_id;
+        $notification->message = $bill->last_date." তারিখের মাঝে ".$bill->name." বিল পরিশোধ করতে অনুরোধ করা হচ্ছে।";
+        $notification->save();
     }
 
     private function isNotApplied($userId, $billId)
@@ -89,6 +101,7 @@ class BillController extends Controller
                         $billuser->bill_id = $bill->id;
                         $billuser->user_id = $user->id;
                         $billuser->save();
+                        $this->notify($user->id, $bill->id);
                     }
                 }
             } elseif ($target[0] == 'group') {
@@ -111,6 +124,7 @@ class BillController extends Controller
                         $billuser->bill_id = $bill->id;
                         $billuser->user_id = $groupMember->user_id;
                         $billuser->save();
+                        $this->notify($groupMember->user_id, $bill->id);
                     }
                 }
             } elseif ($target[0] == 'boarder') {
@@ -124,6 +138,7 @@ class BillController extends Controller
                     $billuser->bill_id = $bill->id;
                     $billuser->user_id = $boarder->id;
                     $billuser->save();
+                    $this->notify($boarder->id, $bill->id);
                 }
             }
         }
@@ -194,6 +209,7 @@ class BillController extends Controller
                             $billuser->bill_id = $bill->id;
                             $billuser->user_id = $user->id;
                             $billuser->save();
+                            $this->notify($user->id, $bill->id);
                         }
                     }
                 } elseif ($target[0] == 'group') {
@@ -220,6 +236,7 @@ class BillController extends Controller
                             $billuser->bill_id = $bill->id;
                             $billuser->user_id = $groupMember->user_id;
                             $billuser->save();
+                            $this->notify($groupMember->user_id, $bill->id);
                         }
                     }
                 } elseif ($target[0] == 'boarder') {
@@ -234,6 +251,7 @@ class BillController extends Controller
                         $billuser->bill_id = $bill->id;
                         $billuser->user_id = $boarder->id;
                         $billuser->save();
+                        $this->notify($boarder->id, $bill->id);
                     }
                 }
             }
@@ -247,6 +265,9 @@ class BillController extends Controller
         $bill = Bill::find($bill_user->bill_id);
         if($bill->mess_id != Auth::user()->mess_id) return abort(404);
         $bill_user->delete();
+
+        $notification = Notification::where('user_id', '=', $id)->where('bill_id', '=', $bill_user->bill_id)->first();
+        if($notification) $notification->delete();
         return back()->with('flash', 'ডিলিট করা হয়েছে!');
     }
 

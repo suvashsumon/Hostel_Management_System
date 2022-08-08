@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBillUsersTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateBillUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('bill_users', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bill_id')->constrained('bills')->onDelete('cascade');
+            $table->foreignId('mess_id')->constrained('messes')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('status', ['paid', 'unpaid', 'submitted'])->default('unpaid');
-            $table->string('information')->nullable();
+            $table->foreignId('bill_id')->constrained('bills')->onDelete('cascade');
+            $table->string('message');
+            $table->enum('status', ['read', 'unread'])->default('unread');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateBillUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bill_users');
+        Schema::dropIfExists('notifications');
     }
 }
