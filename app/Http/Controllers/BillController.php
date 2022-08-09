@@ -280,4 +280,15 @@ class BillController extends Controller
             'bills' => $bills,
         ]);
     }
+
+    public function accept_bill($id)
+    {
+        //return 'hell';
+        $bill_user = BillUser::where('id', '=', $id)->with('user')->with('bill')->first();
+        //return $bill_user;
+        if($bill_user->bill->mess_id != Auth::user()->mess_id) return abort(404);
+        $bill_user->status = 'paid';
+        $bill_user->save();
+        return back();
+    }
 }
