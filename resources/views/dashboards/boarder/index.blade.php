@@ -40,7 +40,7 @@
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua.
                             </p>
-                            <a href="#" class="btn btn-success">বিস্তারিত..</a>
+                            <a href="{{ route('boarder.notifications') }}" class="btn btn-success">বিস্তারিত..</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -56,13 +56,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="footer bg-offwhite mt-3 pt-4 pb-2">
-                <p class="text-gray text-center">
-                    Copyright by {{ config("app.name", "Tinkers Ltd.") }} 2022.
-                    যেকোন প্রয়োজনে যোগাযোগঃ
-                    <b>01321 300 804</b>
-                </p>
             </div>
         </div>
     @endsection

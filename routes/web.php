@@ -92,4 +92,6 @@ Route::group(['prefix'=>'boarder', 'middleware'=>['auth', 'isBoarder']], functio
     Route::post('/change-password', [ProfileSettings::class, 'change_password'])->name('boarder.change_password');
     Route::post('/change-personal-information', [ProfileSettings::class, 'change_personal_information'])->name('boarder.change_personal_information');
     Route::post('/change-profile-pic', [ProfileSettings::class, 'changeProfilePic'])->name('boarder.change_profile_pic');
+    Route::get('/pay-bill/{id}', [BoarderController::class, 'pay_bill_view'])->name('boarder.pay_bill_view');
+    Route::post('/submit-bill-infromation', [BoarderController::class, 'submit_bill_information'])->name('boarder.submit_bill_information');
 });

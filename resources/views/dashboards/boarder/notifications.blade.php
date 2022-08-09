@@ -22,7 +22,7 @@
         @if($notification->status == 'read')
             <div class="card mb-2">
                 <div class="card-body">
-                    {{ $notification->message }} <a href="#">পরিশোধ করুন</a>
+                    {{ $notification->message }} <a href="{{ route('boarder.pay_bill_view', $notification->bill_id) }}">পরিশোধ করুন</a>
                 </div>
             </div>
       @endif
