@@ -51,7 +51,7 @@
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua.
                             </p>
-                            <a href="#" class="btn btn-success">বিস্তারিত..</a>
+                            <a href="{{ route('boarder.bill_history_view') }}" class="btn btn-success">বিস্তারিত..</a>
                         </div>
                     </div>
                 </div>

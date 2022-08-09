@@ -12,6 +12,9 @@
       <li class="nav-item @yield('notifications')">
         <a class="nav-link" href="{{ route('boarder.notifications') }}">নোটিফিকেশনস</a>
       </li>
+      <li class="nav-item @yield('bill-history')">
+        <a class="nav-link" href="{{ route('boarder.bill_history_view') }}">বিল হিস্ট্রি</a>
+      </li>
       <li class="nav-item @yield('settings')">
         <a class="nav-link" href="{{ route('boarder.settings') }}">সেটিংস</a>
       </li>

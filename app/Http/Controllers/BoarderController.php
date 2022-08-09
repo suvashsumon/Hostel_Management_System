@@ -66,4 +66,12 @@ class BoarderController extends Controller
         return redirect()->route('boarder.notifications')->with('flash', 'বিলের তথ্য সফলভাবে সাবমিট হয়েছে!');
 
     }
+
+    public function bill_history_view()
+    {
+        $bills = BillUser::where('user_id', '=', Auth::user()->id)->with('bill')->orderBy('created_at', 'DESC')->get();
+        return view('dashboards.boarder.bill_history', [
+            'bills' => $bills
+        ]);
+    }
 }
