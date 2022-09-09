@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item @yield('dashboard')">
-        <a href="http://127.0.0.1:8000/admin/dashboard" class="nav-link">
+        <a href="{{ route('admin.dashboard') }}" class="nav-link">
             <i class="link-icon" data-feather="trending-up"></i>
             <span class="link-title">Dashboard</span>
         </a>
@@ -34,7 +34,7 @@
         </a>
     </li>
     <li class="nav-item @yield('Settings')">
-        <a href="http://127.0.0.1:8000/admin/settings" class="nav-link">
+        <a href="{{ route('admin.settings') }}" class="nav-link">
             <i class="link-icon" data-feather="settings"></i>
             <span class="link-title">Settings</span>
         </a>
