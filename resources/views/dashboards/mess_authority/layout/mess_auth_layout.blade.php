@@ -107,7 +107,7 @@
             <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
             <p class="text-gray text-center">Copyright by {{ config('app.name', 'Tinkers Ltd.') }} 2022. যেকোন প্রয়োজনে
             যোগাযোগঃ
-            <b>01321 300 804</b>
+            <b>01XXX-XXXXXX</b>
         </p>
             </footer>
         </div>
