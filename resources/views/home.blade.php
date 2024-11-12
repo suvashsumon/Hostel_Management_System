@@ -50,36 +50,36 @@
                                 <p class="text-success mb-3">আপনার একাউন্ট রেজিস্ট্রেশন সফল হয়েছে।</p>
 
                                 <p class="text-gray">আপনি যদি <span class="text-success">মেস মালিক</span> হন তবে আপনার
-                                    পেমেন্ট <b>(৫০০০ টাকা)</b> কনফার্ম করে নিচের নাম্বারে কল করুন!</p>
-                                <p class="text-gray mb-3">নাম্বারঃ <b> 01321 300 804</b></p>
+                                    পেমেন্ট <b>(৩০০০ টাকা)</b> কনফার্ম করে নিচের নাম্বারে কল করুন!</p>
+                                <p class="text-gray mb-3">নাম্বারঃ <b> 01717601509</b></p>
 
 
                                 <p class="text-gray mb-3">আপনার একাউন্ট টি এপ্রুভ করে দেওয়া হবে।</p>
                                 <p class="text-gray mb-3"><span class="text-success">ম্যানেজার বা অন্যকেউ</span> হলে
                                     আপনার মেসের মালিকের সাথে যোগাযোগ করুন।</p>
 
-                                <p class="text-gray"><b>মেস মালিকের ফি - ৫০০০ টাকা (বাৎসরিক)</b></p>
-                                <p class="text-gray mb-3"><b>আমাদের বিকাশ নাম্বারঃ 01627 660 413</b>
+                                <p class="text-gray"><b>মেস মালিকের ফি - ৩০০০ টাকা (বাৎসরিক)</b></p>
+                                <p class="text-gray mb-3"><b>আমাদের বিকাশ নাম্বারঃ 01717601509</b>
                                 </p>
 
                                 <p class="text-gray">{{ config('app.name', 'Tinkers Ltd.') }} ব্যাবহার করার জন্য আপনাকে
                                     ধন্যবাদ।</p>
-                                <p class="text-gray mb-3"><b>আল্লাহ আপানর ব্যাবসায় বরকত দান করুক।</b></p>
-
-                                <h4 class="text-gray">জাযাকাল্লাহু খাইরান!</h4>
+                                <!-- <p class="text-gray mb-3"><b>আল্লাহ আপানর ব্যাবসায় বরকত দান করুক।</b></p> -->
+<!-- 
+                                <h4 class="text-gray">ধন্যবাদ</h4> -->
 
                                 <a href="https://easymemo.net/guest_helpline">{{ config('app.name', 'Tinkers Ltd.') }}
                                     হেল্প লাইন</a>
                                 <form action="/logout" method="post">
                                     @csrf
-                                    <button name="submit">Log Out</button>
+                                    <button class="btn btn-warning" name="submit">Log Out</button>
                                 </form>
 
 
 
                             </div>
                             <div class="col-lg-4 col-sm-12 d-flex align-items-center justify-content-center">
-                                <img src="https://easymemo.net/storage/settings/bkash_1650671804.jpg" alt=" QR code  ">
+                                <img style="width:150px; height:154px;" src="/images/bkash_qr.jpg" alt=" QR code  ">
                             </div>
                         </div>
                     </div>
