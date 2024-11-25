@@ -1,64 +1,87 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Database Diagram
+![db diagram](images/database_diagram.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Basic Pages
+## Login
+![Login](images/login.png)
 
-## About Laravel
+## Register
+![Register](images/register.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Password Reset
+![Password Reset](images/password_reset.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Home Page for Newly Regestred User
+![Home](images/basic_intro_page.png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Admin Panel
+## Home
+![home](images/admin_home.png)
 
-## Learning Laravel
+## Customer List
+![customer list](images/admin_customer_list.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Expired Customer List
+![exp customer](images/admin_exp_customer.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Giving Owner Access
+![owner access](images/admin_owner_access.png)
 
-## Laravel Sponsors
+## Settings
+![settings](images/admin_settings.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Mess Owner Panel
+## Home
+![home](images/own_home.png)
 
-### Premium Partners
+## Boarder List
+![Boarder list](images/own_boarder_list.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Add Boarder Page
+![image](images/own_add_boarder.png)
 
-## Contributing
+## Create Group Page
+![group](images/own_group.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Group Details
+![group details](images/own_group_details.png)
 
-## Code of Conduct
+## Bill
+![image](images/own_bill.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## All Bill
+![all bill](images/own_all_bill.png)
 
-## Security Vulnerabilities
+## Bill Details
+![bill details](images/own_bill_details.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Accept Bill
+![accept bill](images/own_accept_bill.png)
 
-## License
+## Add Manager
+![manager](images/own_add_manager.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Settings
+![settings](images/own_settings.png)
+
+# Manager Panel
+## Home
+![home](images/manager_home.png)
+
+All the functionality of a manager is similar to corresponding mess/hostel owner except adding manager functionality. A manager will not able to perform such operation.
+
+# Boarder Panel
+## Home
+![home](images/boarder_home.png)
+
+## Notification
+![notificaton](images/boarder_notification.png)
+
+## Bill History
+![bill history](images/boarder_bill_history.png)
+
+## Bill Details
+![bill details](images/boarder_bill_details.png)
+
+## Settings
+![settings](images/Boarder_settings.png)
